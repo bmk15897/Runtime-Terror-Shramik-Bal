@@ -1,0 +1,50 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <ion-icon name="walk"></ion-icon>
+      {{getTranslation("Activity History")}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+<div *ngIf="isUserContractor()">
+    <ion-card *ngFor="let application of contractorHistory" style="height:300px; border-color: black; border-width: 4px; padding:4px;">
+      <ion-card-header size="small" expand="block" class="notification-card-header">
+         <span style="font-weight: bold;">
+          {{getTranslation("Application ID")}}
+        </span> : {{application.contractorRequirementId}}
+      </ion-card-header>  
+     <ion-item expand="block">
+      <ion-card-content style="height:300px; border-color:black; border-width:5px;" expand="block">  
+        <p style="font-size: 12px;"><span style="font-weight: bold;">{{getTranslation("Description")}}</span> : {{application.description}}</p>
+          <p style="font-size: 12px;"><span style="font-weight: bold;">{{getTranslation("Requirement")}}</span> :  {{getTranslation(application.field)}} </p>
+          <p style="font-size: 12px;"><span style="font-weight: bold;">{{getTranslation("Active Status")}}</span> :  {{getTranslation(getFullform(application.isActive))}} </p>
+          <p style="font-size: 12px;"><span style="font-weight: bold;">{{getTranslation("Number of people required")}}</span> :  {{application.noOfPeople}} </p>
+          <p style="font-size: 12px;"><span style="font-weight: bold;">{{getTranslation("Number of people applied")}}</span> :  {{application.noOfPeopleApplied}} </p>
+          <p style="font-size: 12px;"><span style="font-weight: bold;">{{getTranslation("Site Address")}}</span> :  {{application.siteAddress}} </p>
+          <p style="font-size: 12px;"><span style="font-weight: bold;">{{getTranslation("City")}}</span> :  {{application.siteCity}} </p>
+        </ion-card-content>
+      </ion-item>
+      </ion-card>
+</div>
+<div *ngIf="!isUserContractor()">
+      <ion-card *ngFor="let application of workerHistory" style="height:240px; border-color: black; border-width: 4px;">
+        <ion-card-header size="small" expand="block" class="notification-card-header">
+          <span style="font-weight: bold;">
+           {{getTranslation("Application ID")}}
+         </span> : {{application.contractorRequirementId}}
+        <ion-icon name="document" style="padding-left:45%;"></ion-icon>
+       </ion-card-header>  
+          <ion-card-content style="height:240px; border-color:black; border-width:5px; padding-bottom: 4px; padding-top:5px;">  
+            <p style="font-size: 12px;"><span style="font-weight: bold;">{{getTranslation("Description")}}</span> : {{application.description}}</p>
+            <p style="font-size: 12px;"><span style="font-weight: bold;">{{getTranslation("Requirement ID")}}</span> :  {{getTranslation(application.contractorRequirementId)}} </p>
+            <p style="font-size: 12px;"><span style="font-weight: bold;">{{getTranslation("Approved")}}</span> :  {{getTranslation(getFullform(application.approved))}} </p>
+            <p style="font-size: 12px;"><span style="font-weight: bold;">{{getTranslation("Contractor Name")}}</span> :  {{application.contractorName}} </p>
+            <p style="font-size: 12px;"><span style="font-weight: bold;">{{getTranslation("Site Details")}}</span> :  {{application.siteAddress}} , {{application.siteCity}} , {{application.siteState}} </p>
+          </ion-card-content>
+        </ion-card>
+</div>
+</ion-content>

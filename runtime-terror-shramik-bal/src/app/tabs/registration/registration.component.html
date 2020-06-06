@@ -1,0 +1,52 @@
+<ion-app>
+    <ion-header translucent>
+      <ion-toolbar>
+        <ion-title>{{getTranslation("Create Application")}}</ion-title>
+      </ion-toolbar>
+    </ion-header>
+  
+    <ion-content fullscreen>
+      <form onsubmit="processForm(event)">
+        <ion-list lines="full" class="ion-no-margin ion-no-padding">
+  
+          <ion-item>
+            <ion-label position="stacked"> <ion-icon name="help-circle" style="size:4px;"></ion-icon> {{getTranslation("Requirement")}} <ion-text color="danger">*</ion-text></ion-label>
+             <ion-select value="dog" style="font-size: smaller;">
+              <ion-select-option *ngFor="let option of optionsEnglish" value="{{option}}">{{getTranslation(option)}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        
+          <ion-item>
+            <ion-label position="stacked">{{getTranslation("Number of workers required")}} <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input type="number" value="10"></ion-input>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label position="stacked"> {{getTranslation("Address-Line-1")}}<ion-text color="danger">*</ion-text></ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label position="stacked"> {{getTranslation("City")}} <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label position="stacked"> {{getTranslation("Pincode")}} <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+  
+          <!-- <ion-item>
+            <ion-label position="stacked">Notes</ion-label>
+            <ion-textarea></ion-textarea>
+          </ion-item> -->
+        </ion-list>
+  
+        <div class="ion-padding">
+          <ion-button expand="block" type="submit" class="ion-no-margin"> {{getTranslation("Create Application")}} </ion-button>
+        </div>
+      </form>
+    </ion-content>
+    <ion-alert-controller></ion-alert-controller>
+  </ion-app>
+  

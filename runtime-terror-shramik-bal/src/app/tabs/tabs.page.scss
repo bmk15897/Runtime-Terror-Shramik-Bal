@@ -1,0 +1,22 @@
+ion-item{
+    --background: #3880ff;
+    --color: #fff;
+}
+
+ion-button{
+    --background: #062f77;
+}
+
+.activated {
+    background:green;
+} 
+ion-tab-button{
+    font-size: 10px;
+    --background-focused: black;
+    --color-selected: black;
+    --padding-end: 0px;
+    --padding-start: 10px;
+    --padding-bottom: 0px;
+    --margin-left:0px;
+    --margin-right:0px;
+    max-width:100px;}

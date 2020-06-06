@@ -1,0 +1,22 @@
+<ion-content class="customWallpaper">
+<div *ngIf="noneSelected">
+  <ion-header [translucent]="true">
+    <ion-toolbar class="new-background-color">
+      <ion-title>
+    <img src="../../../assets/icon/shramikBalLogo.png" style="height:30px;">
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+      </ion-toolbar>
+    </ion-header>
+    <ion-item *ngFor="let option of options" button (click)="navigateToScreen(option)">
+      <ion-icon name="{{option.icon}}" style="padding:6px;"></ion-icon>
+      <ion-label  style="font-size: smaller;">{{getTranslation(option.name)}}</ion-label>
+    </ion-item>
+  </ion-content>
+</div>
+</ion-content>

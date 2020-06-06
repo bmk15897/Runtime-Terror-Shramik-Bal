@@ -1,0 +1,78 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1/settings"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <ion-icon name="checkmark-done-outline"></ion-icon>
+      {{getTranslation("Update Profile")}}
+    </ion-title>
+  </ion-toolbar>
+  </ion-header>
+  <ion-content>
+  <form [formGroup]="updateProfileInformationForm">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item style="border-radius: 20px;">
+        <ion-label position="floating">{{getTranslation("Username")}}</ion-label>
+        <ion-input formControlName="username" type="text"></ion-input>
+    </ion-item>
+    <ion-item style="border-radius: 20px;">
+      <ion-label position="floating">{{getTranslation("Name")}}</ion-label>
+      <ion-input formControlName="name" type="text" (keypress)="onKeyPress($event)"></ion-input>
+    </ion-item>
+    <ion-item style="border-radius: 20px;">
+      <ion-label position="floating">{{getTranslation("Aadhar ID Number")}}</ion-label>
+      <ion-input formControlName="aadhaarId" type="text"></ion-input>
+    </ion-item>
+    <ion-item style="border-radius: 20px;">
+      <ion-label position="floating">{{getTranslation("Contact Number")}}</ion-label>
+      <ion-input formControlName="contactNo" type="text"></ion-input>
+    </ion-item>
+    <ion-item style="border-radius: 20px;">
+      <ion-label position="floating">{{getTranslation("Address")}}</ion-label>
+      <ion-input formControlName="address" type="text"></ion-input>
+    </ion-item>
+    <ion-item style="border-radius: 20px;">
+      <ion-label position="floating">{{getTranslation("City")}}</ion-label>
+      <ion-input formControlName="city" type="text"></ion-input>
+    </ion-item>
+    <ion-item style="border-radius: 20px;">
+      <ion-label position="floating">{{getTranslation("State")}}</ion-label>
+      <ion-input formControlName="state" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">{{getTranslation("Age")}} <ion-text color="danger">*</ion-text></ion-label>
+    <ion-input type="number" value="18"  formControlName="age" ></ion-input>
+    </ion-item>
+    <div *ngIf="isLabourer()">
+      <ion-item>
+      <ion-label position="stacked"> <ion-icon name="help-circle" style="size:4px;"></ion-icon> {{getTranslation("Register as individual or group?")}} <ion-text color="danger">*</ion-text></ion-label>
+        <ion-select value="dog" style="font-size: smaller;" formControlName="personOrGroup">
+        <ion-select-option *ngFor="let option of workerTypes" value="{{option}}">{{getTranslation(option)}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked"> <ion-icon name="help-circle" style="size:4px;"></ion-icon> {{getTranslation("Specialization")}} <ion-text color="danger">*</ion-text></ion-label>
+        <ion-select multiple="true" value="dog" style="font-size: smaller;" formControlName="specialization">
+        <ion-select-option *ngFor="let option of specializationFields" value="{{option}}">{{getTranslation(option)}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">{{getTranslation("Experience in years")}} <ion-text color="danger">*</ion-text></ion-label>
+    <ion-input type="number" value="10"  formControlName="yearsOfExperience" ></ion-input>
+    </ion-item>
+  </div>
+    <div *ngIf="registeringAsGroup()">
+      <ion-item>
+        <ion-label position="stacked">{{getTranslation("Number of people in the group")}} <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input type="number" value="1"  formControlName="groupStrength" ></ion-input>
+      </ion-item>
+    </div>
+    <div>
+      <ion-button color="dark" style="padding-left:30%; font-weight:bolder" (click)="updateProfile()" [disabled]="!updateProfileInformationForm.valid"> {{getTranslation("Update Profile")}}</ion-button>
+    </div>
+      </ion-list>
+ </form>
+ 
+
+</ion-content>

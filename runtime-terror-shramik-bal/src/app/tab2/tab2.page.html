@@ -1,0 +1,86 @@
+<ion-content [fullscreen]="true">
+<div *ngIf="universalSharedService.userType=='CONTRACTOR'">
+  <ion-searchbar placeholder="{{getTranslation('How can we help you?')}}" autocomplete="on" type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list *ngIf="isItemAvailable">
+    <ion-item *ngFor="let option of options" button (click)="triggerSearch(option)" >
+      <ion-icon name="settings" style="padding:6px;"></ion-icon>
+      <ion-label  style="font-size: smaller;">{{getTranslation(option)}}</ion-label>
+    </ion-item>
+  </ion-list>
+  <div *ngIf="noSearchTriggered">
+    <ion-card *ngFor="let w of workers">
+    <ion-card-header size="small" expand="block" class="new-background-color">
+      {{w.name}} : <span style="text-align:right"> {{w.fieldOfSpecialization}} </span>
+    </ion-card-header>
+      <ion-item>
+        <ion-label>
+          <img src="{{w.imageLink}}" style="width:100px;">
+        </ion-label>
+          <ion-card-content style="margin-left:-30%;">
+            <!-- <span style="font-weight: bold;">{{getTranslation("Name")}}</span> : {{w.name}}<br> -->
+            <span style="font-weight: bold;">{{getTranslation("Age")}}</span> : {{w.age}} {{getTranslation("years")}}<br>
+            <span style="font-weight: bold;">{{getTranslation("Rating")}}</span>: {{w.avgRating}} <ion-icon name="star"></ion-icon><br>
+            <!-- <span style="font-weight: bold;">{{getTranslation("Specialization")}}</span>: {{getTranslation(w.specialization)}}<br> -->
+            <span style="font-weight: bold;">{{getTranslation("Number of services provided")}}</span>: {{getTranslation(w.noOfServicesProvided)}}<br>
+            <span style="font-weight: bold;">{{getTranslation("With us since")}}</span>: {{getTranslation(w.withUsSince)}}<br>
+            <span style="font-weight: bold;">{{getTranslation("Years of experience")}}</span>: {{getTranslation(w.yearsOfExperience)}}<br>
+          </ion-card-content>
+      </ion-item>
+    </ion-card>
+  </div>
+
+  <div *ngIf="!noSearchTriggered">
+    <ion-card expand="block">
+      <ion-card-header size="small" expand="block" class="notification-card-header">
+        {{getTranslation("Showing search results for")}} : {{getTranslation(searchCriteriaOption)}}
+      </ion-card-header>
+    </ion-card>
+    <ion-card *ngFor="let w of searchResultList">
+      <ion-card-header size="small" expand="block" class="new-background-color">
+        {{w.name}} : <span style="text-align:right"> {{w.fieldOfSpecialization}} </span>
+      </ion-card-header>
+        <ion-item>
+          <ion-label>
+            <img src="{{w.imageLink}}" style="width:100px;">
+          </ion-label>
+            <ion-card-content style="margin-left:-30%;">
+              <!-- <span style="font-weight: bold;">{{getTranslation("Name")}}</span> : {{w.name}}<br> -->
+              <span style="font-weight: bold;">{{getTranslation("Age")}}</span> : {{w.age}} {{getTranslation("years")}}<br>
+              <span style="font-weight: bold;">{{getTranslation("Rating")}}</span>: {{w.avgRating}} <ion-icon name="star"></ion-icon><br>
+              <!-- <span style="font-weight: bold;">{{getTranslation("Specialization")}}</span>: {{getTranslation(w.specialization)}}<br> -->
+              <span style="font-weight: bold;">{{getTranslation("Number of services provided")}}</span>: {{getTranslation(w.noOfServicesProvided)}}<br>
+              <span style="font-weight: bold;">{{getTranslation("With us since")}}</span>: {{getTranslation(w.withUsSince)}}<br>
+              <span style="font-weight: bold;">{{getTranslation("Years of experience")}}</span>: {{getTranslation(w.yearsOfExperience)}}<br>
+            </ion-card-content>
+        </ion-item>
+    </ion-card>
+  </div>
+</div>
+<div *ngIf="universalSharedService.userType=='WORKER'" expand="block">
+  <ion-header>
+    <ion-toolbar class="new-background-color">
+      <ion-title>
+        <ion-icon name="notifications"></ion-icon>
+    {{getTranslation("Open Applications")}}
+  </ion-title>  
+  </ion-toolbar>
+  </ion-header>
+  <ion-card *ngFor="let a of applications" expand="block">
+    <ion-card-header size="small" expand="block" class="notification-card-header">
+      {{getTranslation("Application ID")}} : {{a.contractorRequirementId}}
+    </ion-card-header>
+    <ion-item expand="block">
+        <ion-card-content expand="block">
+          <span style="font-weight: bold;">{{getTranslation("Requirement")}}</span> : {{getTranslation(a.field)}}<br>
+          <span style="font-weight: bold;">{{getTranslation("Number of people required")}}</span> : {{a.noOfPeople}}<br>
+          <span style="font-weight: bold;">{{getTranslation("Number of people selected so far")}}</span>: {{a.noOfPeopleApplied}}<br>
+          <span style="font-weight: bold;">{{getTranslation("Site Address")}}</span>: {{getTranslation(a.siteAddress)}}<br>
+          <span style="font-weight: bold;">{{getTranslation("City")}}</span>: {{getTranslation(a.siteCity)}}<br>
+          <span style="font-weight: bold;">{{getTranslation("Contractor ID")}}</span>: {{getTranslation(a.contractorName)}}<br>
+        </ion-card-content>
+    </ion-item>
+    <ion-button id="{{a.contractorRequirementId}}" color="{{a.color}}" size="small" type="submit" expand="block" (click)="applyNow(a)"> {{getTranslation(a.buttonText)}} </ion-button>
+  </ion-card>
+</div>
+  
+</ion-content>

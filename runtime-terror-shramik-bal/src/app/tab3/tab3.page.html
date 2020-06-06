@@ -1,0 +1,46 @@
+  <ion-header translucent>
+    <ion-toolbar class="new-background-color">
+      <ion-title>
+        <ion-icon name="document" style="padding:3px;"></ion-icon>
+        <ion-label style="font-size: smaller;">{{getTranslation("Create Application")}}</ion-label>
+     </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content fullscreen>
+    <form [formGroup]="createApplicationForm">
+      <ion-list lines>
+
+      
+    <ion-item>
+      <ion-label position="stacked">{{getTranslation("Describe your requirement")}} <ion-text color="danger">*</ion-text></ion-label>
+    <ion-input type="text" value="10"  formControlName="description" ></ion-input>
+    </ion-item>  
+    <ion-item>
+      <ion-label position="stacked"> <ion-icon name="help-circle" style="size:4px;"></ion-icon> {{getTranslation("Requirement")}} <ion-text color="danger">*</ion-text></ion-label>
+        <ion-select value="dog" style="font-size: smaller;" formControlName="field">
+        <ion-select-option *ngFor="let option of specializationFields" value="{{option}}">{{getTranslation(option)}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+      <ion-item>
+        <ion-label position="stacked">{{getTranslation("Number of workers required")}} <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input type="number" value="10"  formControlName="noOfPeople" ></ion-input>
+      </ion-item>
+        <ion-item style="border-radius: 20px;">
+          <ion-label position="floating">{{getTranslation("Address-Line-1")}}</ion-label>
+          <ion-input formControlName="siteAddress" type="text"></ion-input>
+      </ion-item>
+      <ion-item style="border-radius: 20px;">
+        <ion-label position="floating">{{getTranslation("City")}}</ion-label>
+        <ion-input formControlName="siteCity" type="text"></ion-input>
+      </ion-item>
+      <ion-item style="border-radius: 20px;">
+        <ion-label position="floating">{{getTranslation("State")}}</ion-label>
+        <ion-input formControlName="siteState" type="text"></ion-input>
+      </ion-item>
+      <div>
+        <ion-button color="dark" style="padding-left:30%; font-weight:bolder" (click)="createApplication()" [disabled]="!createApplicationForm.valid"> {{getTranslation("Create Application")}}</ion-button>
+      </div>
+        </ion-list>
+   </form>
+  </ion-content>

@@ -1,0 +1,10 @@
+// .customWallpaper {
+//     --background: #a7a4a3 url("../../assets/icon/Labourers1.jpg");
+// }
+ion-content {
+    --background: #a7a4a3 url("../../assets/icon/Labourers1.jpg") no-repeat center center / cover;
+}
+
+.new-background-color{
+    --background:url("../../assets/icon/tricolor.jpg") no-repeat center center / cover;
+}

@@ -1,0 +1,217 @@
+<ion-app>
+  <div *ngIf="notificationView">
+    <ion-header translucent>
+      <ion-toolbar class="new-background-color">
+        <ion-title>
+          <ion-icon name="notifications" style="padding:3px;"></ion-icon>
+          {{getTranslation("Notifications")}}
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content fullscreen>
+        <div *ngIf="isUserContractor()">
+            <ion-list>
+              <ion-card style="margin-bottom:-3px;" button (click)="toggleVisibilityForTodaysNotifsContractor()">  
+                <ion-card-header size="small" expand="block" class="notification-list-card-header" style="height: 40px; text-align: center;">     
+                  <p style="size:22px; margin-top:-2%;">
+                    {{getTranslation("Today's Notifications")}}
+                    <span *ngIf="!todaysNotificationsContractorVisible"> ( {{contractorNewNotifications.length}} ) </span>
+                    <ion-icon name="{{todaysNotifsIcon}}" item-right></ion-icon>
+                  </p>
+                </ion-card-header>
+             </ion-card>
+             <div *ngIf="todaysNotificationsContractorVisible">
+            <ion-card *ngFor="let notification of contractorNewNotifications" (click)="openProfile(notification)">
+              <ion-card-header size="small" expand="block" class="notification-card-header" style="height: 40px;">     
+                <p style="margin-top:-11px;"><ion-icon name="person" style="padding:3px;"></ion-icon><span style="padding:3px; margin-top:-3%">{{notification.labourerName}}</span></p>
+               </ion-card-header>  
+              <ion-content style="height:120px">  
+                <ion-avatar slot="start">
+                    <img src="./avatar-finn.png">
+                </ion-avatar>
+                 <!-- <h2 style="font-weight:bold; font-size: 14px;">{{notification.name}}</h2> -->
+                  <!-- <p style="font-size: 15px; margin-top: 5px;"> {{notification.name}} {{getTranslation("Applied for your application")}} </p> -->
+                  <p style="font-size: 12px; margin-top: 5px;"><span style="font-weight:bold">  {{getTranslation("Application ID")}} </span> : {{notification.workerApplicationId}} </p>
+                  <p style="font-size: 12px; margin-top: 5px;"><span style="font-weight:bold">  {{getTranslation("Applied for your application")}} </span> : " {{notification.description}} " </p>
+                  
+                  <div style="text-align: right; padding-bottom: 5px;">
+                    <ion-button color="danger" (click)="openProfile(notification)">
+                      {{getTranslation("Visit Profile")}}<ion-icon name="arrow-forward-outline" item-right></ion-icon>
+                    </ion-button>
+                  </div>
+                </ion-content>
+              </ion-card>
+            </div>
+            </ion-list>
+            <ion-list>
+              <ion-card style="margin-bottom:-3px;"  button (click)="toggleVisibilityForOlderNotifsContractor()">  
+                <ion-card-header size="small" expand="block" class="notification-list-card-header" style="height: 40px; text-align: center;">     
+                  <p style="size:22px; margin-top:-2%;">
+                    {{getTranslation("Older Notifications")}}
+                    <span *ngIf="!olderNotificationsContractorVisible"> ( {{contractorOldNotifications.length}} ) </span>
+                   <ion-icon name="{{olderNotifsIcon}}" item-right></ion-icon>
+              </p>
+                </ion-card-header>
+             </ion-card>
+        
+            <div *ngIf="olderNotificationsContractorVisible">
+                <ion-card *ngFor="let notification of contractorOldNotifications" (click)="openProfile(notification)">
+                  <ion-card-header size="small" expand="block" class="notification-card-header" style="height: 40px;">     
+                    <p style="margin-top:-11px;"><ion-icon name="person" style="padding-right:3px; margin-bottom:-3px;"></ion-icon><span style="padding:3px; margin-top:-3%"> {{notification.labourerName}} </span></p>
+                   </ion-card-header>  
+                  <ion-content style="height:150px">  
+                    <ion-avatar slot="start">
+                        <img src="./avatar-finn.png">
+                    </ion-avatar>
+                    <p style="font-size: 12px; margin-top: 5px;"><span style="font-weight:bold">  {{getTranslation("Application ID")}} </span> : {{notification.workerApplicationId}} </p>
+                    <p style="font-size: 12px; margin-top: 5px;"><span style="font-weight:bold">  {{getTranslation("Applied for your application")}} </span> : " {{notification.description}} " </p>
+                    <div style="text-align: right; padding-bottom: 5px;">
+                      <ion-button color="danger" (click)="openProfile(notification)">
+                        {{getTranslation("Visit Profile")}}<ion-icon name="arrow-forward-outline" item-right></ion-icon>
+                      </ion-button>
+                    </div>
+                  </ion-content>
+                  </ion-card>
+            </div>
+              </ion-list>
+        </div>
+        <div *ngIf="!isUserContractor()">
+          <ion-list>
+          <ion-card style="margin-bottom:-3px;" button (click)="toggleVisibilityForTodaysNotifsWorker()">  
+            <ion-card-header size="small" expand="block" class="notification-list-card-header" style="height: 40px; text-align: center;">     
+              <p style="size:22px; margin-top:-2%;">
+                {{getTranslation("Today's Notifications")}}
+                <span *ngIf="todaysNotificationsWorkerVisible"> ( {{workerNewNotifications.length}} ) </span>
+                <ion-icon name="{{todaysNotifsIcon}}" item-right></ion-icon>
+              </p>
+            </ion-card-header>
+         </ion-card>
+         <div *ngIf="todaysNotificationsWorkerVisible">
+            <ion-card *ngFor="let notification of workerNewNotifications">  
+               <ion-card-header size="small" expand="block" class="notification-card-header" style="height: 40px;">     
+             <p style="margin-top:-11px;"><ion-icon name="notifications" style="padding:3px;"></ion-icon><span style="padding:3px; margin-top:-3%">{{notification.description}}</span></p>
+            </ion-card-header>
+              <ion-item>
+              <ion-label>
+                <img src="../../assets/icon/approved.png" style="width:50px;" *ngIf="notification.approved=='Y'">
+                <img src="../../assets/icon/declined.png" style="width:50px;" *ngIf="notification.approved=='N'">
+                <img src="../../assets/icon/pending.webp" style="width:50px;" *ngIf="notification.approved=='P'">
+              </ion-label>
+                <ion-card-content style="height:100px">
+                  <p style="font-size: 14px;"> <span> {{getTranslation("Application")}} </span> : {{notification.workerApplicationId}}</p>
+                  <p style="font-size: 14px;"> <span style="font-weight:bold">{{getTranslation("Status")}}</span> : {{getTranslation(isApproved(notification.approved)) }} </p>
+                  <p style="font-size: 14px;">  <span style="font-weight:bold">{{getTranslation("Contractor Requirement ID")}}</span> : {{notification.contractorRequirementId}} </p>
+                </ion-card-content>
+                </ion-item>
+              </ion-card>
+            </div>
+            </ion-list>
+            <ion-list>
+              <ion-card style="margin-bottom:-3px;"  button (click)="toggleVisibilityForOlderNotifsWorker()">  
+                <ion-card-header size="small" expand="block" class="notification-list-card-header" style="height: 40px; text-align: center;">     
+                  <p style="size:22px; margin-top:-2%;">
+                    {{getTranslation("Older Notifications")}}
+                    <span *ngIf="!olderNotificationsWorkerVisible"> ( {{workerOldNotifications.length}} ) </span>
+                   <ion-icon name="{{olderNotifsIcon}}" item-right></ion-icon>
+              </p>
+                </ion-card-header>
+             </ion-card>
+        
+             <div *ngIf="olderNotificationsWorkerVisible">
+                <ion-card *ngFor="let notification of workerOldNotifications">
+                  <ion-card-header size="small" expand="block" class="notification-card-header" style="height: 40px;">     
+                    <p style="margin-top:-11px;"><ion-icon name="notifications" style="padding:3px;"></ion-icon><span style="padding:3px; margin-top:-3%"> {{notification.description}} </span></p>
+                   </ion-card-header>
+                  <ion-item>
+                  <ion-label>
+                    <img src="../../assets/icon/approved.png" style="width:50px;" *ngIf="notification.approved=='Y'">
+                    <img src="../../assets/icon/declined.png" style="width:50px;" *ngIf="notification.approved=='N'">
+                    <img src="../../assets/icon/pending.webp" style="width:50px;" *ngIf="notification.approved=='P'">
+                  </ion-label>
+                  <ion-card-content style="height:100px">  
+                    <p style="font-size: 14px;">  <span style="font-weight:bold">{{getTranslation("Application")}} </span> : {{notification.workerApplicationId}} </p>
+                    <p style="font-size: 14px;"> <span style="font-weight:bold">{{getTranslation("Status")}}</span> :  {{getTranslation(isApproved(notification.approved)) }}  </p>
+                    <p style="font-size: 14px;">  <span style="font-weight:bold">{{getTranslation("Contractor Requirement ID")}}</span> : {{notification.contractorRequirementId}} </p>
+                  </ion-card-content>
+                </ion-item>
+                </ion-card>
+              </div>
+              </ion-list>
+        </div>
+    </ion-content>
+  </div>
+
+
+  <div *ngIf="!notificationView">
+    <ion-header>
+      <ion-toolbar class="new-background-color">
+        <ion-buttons slot="start" (click)="goBackToNotifications()">
+          <ion-back-button defaultHref="/tabs/tab4" style="color:white" ></ion-back-button>
+        </ion-buttons>
+        <ion-title> {{profileDetails.name}} </ion-title>
+        <ion-buttons slot="end">
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    
+    <ion-item style="width:100%;">
+      <ion-content style="height:110px;"> 
+        <ion-card>
+          <p style="padding:5px;">
+            {{profileDetails.name}} {{getTranslation(" is interested in your application. Approve them now?")}}
+          </p> 
+          <ion-button color="dark" (click)="approveRequest(profileDetails.workerApplicationId)">
+            {{getTranslation("Approve")}}
+          </ion-button>
+          <ion-button color="dark" (click)="denyRequest(profileDetails.workerApplicationId)">
+            {{getTranslation("Decline")}}
+          </ion-button>
+        </ion-card> 
+      </ion-content>
+    </ion-item>
+    
+    <ion-content fullscreen="true" slot="fixed" >
+      <div class="ion-padding">
+      </div>
+        
+      <div class="card">
+        <div class="header" style="align:left; background-image: url('https://ichef.bbci.co.uk/news/976/cpsprodpb/5403/production/_104970512_mediaitem104970511.jpg')">
+          <div class="avatar">
+            <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/5403/production/_104970512_mediaitem104970511.jpg" alt="">
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="user-meta ion-text-center">
+            
+            <h3 style="size:30px; font-weight: bolder;">{{profileDetails.name}}
+              <ion-chip *ngIf="profileDetails.personOrGroup=='G'">
+                {{getTranslation("Group")}
+              </ion-chip>
+            </h3>
+            <h4>{{profileDetails.city}}</h4>
+          </div>
+          <!-- <ion-button expand="full" color="primary" (click)="generateQRCode()"> {{getTranslation("Generate QR Code")}}</ion-button> -->
+        </div>
+      </div>
+      <ion-card>
+        <ion-card-header size="small" expand="block" class="about-card-header">
+          <p style="size: 20px; font-weight: bold; text-decoration: underline;"> {{getTranslation("About")}} :</p>
+        </ion-card-header>
+        <ion-content style="height:300px; padding:left: 10px;">  
+        <p> <span style="color:black; font-weight: bold;" > {{getTranslation("Field of Specialization")}} :</span> {{getTranslation(profileDetails.fieldOfSpecialization)}}</p> 
+          <p> <span style="color:black; font-weight: bold;">  {{getTranslation("Rating")}} :</span>  {{profileDetails.avgRating}} <ion-icon name="star"></ion-icon> </p> 
+          <p><span style="color:black; font-weight: bold;">  {{profileDetails.age}}</span> {{getTranslation("years old")}}</p> 
+          <p><span style="color:black; font-weight: bold;"> {{getTranslation("Contact Number")}} : </span>{{profileDetails.contactNo}}</p> 
+          <p *ngIf="profileDetails.personOrGroup=='G'"><span style="color:black; font-weight: bold;" > {{getTranslation("Group Count")}} :</span> {{profileDetails.groupCount}}</p> 
+          <p> <span style="color:black; font-weight: bold;" > {{getTranslation("Number of services provided")}} : </span>{{profileDetails.noOfServicesProvided}}</p> 
+          <p> <span style="color:black; font-weight: bold;"> {{getTranslation("On Shramik Bal since ")}} : </span> {{profileDetails.withUsSince}}</p> 
+          <p><span style="color:black; font-weight: bold;" > {{getTranslation("Experience")}} : </span> {{profileDetails.yearsOfExperience}} {{getTranslation("years")}}</p> 
+      </ion-content>
+        </ion-card>
+    </ion-content>
+    
+    
+  </div>
+  </ion-app>

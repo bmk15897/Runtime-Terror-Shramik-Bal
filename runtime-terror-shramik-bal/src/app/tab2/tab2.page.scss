@@ -1,0 +1,36 @@
+img {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 5px;
+    width: 100px;
+    height:100px;
+  }
+
+.new-background-color{
+    --background:url("../../assets/icon/tricolor.jpg") no-repeat center center / cover;
+}
+
+.block {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #4CAF50;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.notification-card-header {
+  background-color: #cc0000;
+  color: white;
+}
+
+.new-background-color{
+  --background:url("../../assets/icon/black-background.png") no-repeat center center / cover;
+  color:white;
+}
+
+#btnLeft:active {
+  color:'success'
+}
