@@ -79,7 +79,7 @@
           <span style="font-weight: bold;">{{getTranslation("Contractor ID")}}</span>: {{getTranslation(a.contractorName)}}<br>
         </ion-card-content>
     </ion-item>
-    <ion-button id="{{a.contractorRequirementId}}" color="{{a.color}}" size="small" type="submit" expand="block" (click)="applyNow(a)"> {{getTranslation(a.buttonText)}} </ion-button>
+    <ion-button id="{{a.contractorRequirementId}}" color="{{buttonColor(a)}}" size="small" type="submit" expand="block" (click)="applyNow(a)"> {{getTranslation(a.buttonText)}} </ion-button>
   </ion-card>
 </div>
   

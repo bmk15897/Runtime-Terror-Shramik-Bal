@@ -220,5 +220,14 @@ async presentApplyConfirmationAlert() {
 
   await alert.present();
 }
+
+buttonColor(a) {
+  if(a.buttonText=="Applied") {
+    return "success";
+  }
+  else {
+    return "dark";
+  }
+}
     
 }

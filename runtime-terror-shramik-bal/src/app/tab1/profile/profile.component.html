@@ -1,83 +1,3 @@
-<!-- <ion-header style="background-color: white;">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs/tab1" style="color:black"></ion-back-button>
-    </ion-buttons>
-    <ion-title>{{generateTranslation("My Profile")}}</ion-title>
-    <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon slot="icon-only" src="https://ichef.bbci.co.uk/news/976/cpsprodpb/5403/production/_104970512_mediaitem104970511.jpg"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content fullscreen="true" slot="fixed" >
-  <div class="ion-padding">
-  </div>
-    
-  <div class="card">
-    <div class="header" style="align:left; background-image: url('https://ichef.bbci.co.uk/news/976/cpsprodpb/5403/production/_104970512_mediaitem104970511.jpg')">
-      <div class="avatar">
-        <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/5403/production/_104970512_mediaitem104970511.jpg" alt="">
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="user-meta ion-text-center">
-        
-        <h3 style="size:30px; font-weight: bolder;">
-          <ion-chip *ngIf="profileDetails.loginDetails.type=='C'">
-            {{profileDetails.contractor.name}}
-          CONTRACTOR
-          </ion-chip>
-          <ion-chip *ngIf="profileDetails.loginDetails.type=='L'">
-            {{profileDetails.labourer.name}}
-            LABOURER
-          </ion-chip>
-          <ion-chip *ngIf="profileDetails.loginDetails.type=='L' && profileDetails.labourer.personOrGroup=='G'">
-              {{generateTranslation("Group")}}
-          </ion-chip>
-        </h3>
-        <h4 *ngIf="profileDetails.loginDetails.type=='L'">{{profileDetails.labourer.city}}</h4>
-        <h4 *ngIf="profileDetails.loginDetails.type=='C'">{{profileDetails.contractor.city}}</h4>
-      </div>
-      <ion-button expand="full" color="primary" (click)="generateQRCode()"> {{generateTranslation("Generate QR Code")}}</ion-button>
-      <ion-card *ngIf="profileDetails.loginDetails.type=='L'" style="padding: 7px; margin-top:-7%; border-radius: 20px; box-shadow: 10px 10px 10px;">
-    <p style="size: 20px; font-weight: bold; text-decoration: underline;"> {{generateTranslation("About")}} :</p>
-    <h4> </h4>
-    <p> <span style="color:black; font-weight: bold;" > {{generateTranslation("Field of Specialization")}} :</span> {{profileDetails.labourer.fieldOfSpecialization}}</p> 
-      <p> <span style="color:black; font-weight: bold;">  {{generateTranslation("Rating")}} :</span> {{profileDetails.labourer.avgRating}}</p> 
-      <p><span style="color:black; font-weight: bold;">  {{profileDetails.labourer.age}}</span> {{generateTranslation("years old")}}</p> 
-      <p><span style="color:black; font-weight: bold;"> {{generateTranslation("Contact Number")}} : </span>{{profileDetails.labourer.contactNo}}</p> 
-      <p *ngIf="profileDetails.labourer.personOrGroup=='G'"><span style="color:black; font-weight: bold;" > {{generateTranslation("Group Count")}} :</span> {{profileDetails.labourer.groupCount}}</p> 
-      <p> <span style="color:black; font-weight: bold;" > {{generateTranslation("Number of services provided")}} : </span>{{profileDetails.labourer.noOfServicesProvided}}</p> 
-      <p> <span style="color:black; font-weight: bold;"> {{generateTranslation("On Shramik Bal since ")}} : </span> {{profileDetails.labourer.withUsSince}}</p> 
-      <p><span style="color:black; font-weight: bold;" > {{generateTranslation("Experience")}} : </span> {{profileDetails.labourer.yearsOfExperience}} {{generateTranslation("years")}}</p> 
-  </ion-card>
-  <ion-card *ngIf="profileDetails.loginDetails.type=='C'" style="padding: 7px; margin-top:-7%; border-radius: 20px; box-shadow: 10px 10px 10px;">
-    <p style="size: 20px; font-weight: bold; text-decoration: underline;"> {{generateTranslation("About")}} :</p>
-      <p> <span style="color:black; font-weight: bold;">  {{generateTranslation("Rating")}} :</span> {{profileDetails.contractor.avgRating}}</p> 
-      <p><span style="color:black; font-weight: bold;">  {{profileDetails.contractor.age}}</span> {{generateTranslation("years old")}}</p> 
-      <p><span style="color:black; font-weight: bold;"> {{generateTranslation("Contact Number")}} : </span>{{profileDetails.contractor.contactNo}}</p> 
-      <p> <span style="color:black; font-weight: bold;" > {{generateTranslation("Number of services used")}} : </span>{{profileDetails.contractor.noOfServicesUsed}}</p> 
-  </ion-card>
-    </div>
-
-
-  </div>
-  
-   <ion-grid>
-    <ion-row *ngFor="let s of Object.keys(profileDetails)">
-      <ion-col>
-        <div>{{s}}</div>
-      </ion-col>
-      <ion-col>
-        <div>{{s}}</div>
-      </ion-col>
-    </ion-row>
-  </ion-grid> 
-</ion-content> -->
-
 <ion-header>
   <ion-toolbar class="new-background-color">
     <ion-buttons slot="start">
@@ -115,14 +35,14 @@
         </h3>
         <h4 *ngIf="profileDetails.loginDetails.type=='C'">{{profileDetails.contractor.city}}</h4>
         <h4 *ngIf="profileDetails.loginDetails.type=='L'">{{profileDetails.labourer.city}}</h4>
-      <ion-button expand="full" color="danger" (click)="generateQRCode()"> {{generateTranslation("Generate QR Code")}}</ion-button>
+      <!-- <ion-button expand="full" color="danger" (click)="generateQRCode()"> {{generateTranslation("Generate QR Code")}}</ion-button> -->
     </div>
-    <ion-card *ngIf="profileDetails.loginDetails.type=='C'">
+    <!-- <ion-card *ngIf="profileDetails.loginDetails.type=='C'">
       <ngx-qrcode [qrc-value]="profileDetails.contractor.contactNo"></ngx-qrcode>
     </ion-card>
     <ion-card *ngIf="profileDetails.loginDetails.type=='L'">
       <ngx-qrcode [qrc-value]="profileDetails.labourer.contactNo"></ngx-qrcode>
-    </ion-card>
+    </ion-card> -->
   </div>
 </div>
   <ion-card>
@@ -160,4 +80,4 @@
 </ion-content>
 
 
-<ngx-qrcode [qrc-value]="ANCDDSJGH>DK"></ngx-qrcode>
+<!-- <ngx-qrcode [qrc-value]="ANCDDSJGH>DK"></ngx-qrcode> -->

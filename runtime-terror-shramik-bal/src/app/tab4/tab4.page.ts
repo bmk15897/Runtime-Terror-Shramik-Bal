@@ -238,6 +238,7 @@ export class Tab4Page {
   }
 
   goBackToNotifications() {
+    this.ngOnInit();
     this.notificationView=true;
     console.log('function called');
   }

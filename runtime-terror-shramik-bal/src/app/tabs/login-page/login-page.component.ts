@@ -221,6 +221,15 @@ export class LoginPageComponent implements OnInit {
         case "Registration successful" : {
           return "रजिस्ट्रेशन सफलतापूर्वक हो गया है";
         }
+        case "Please enter the OTP you received on your mobile number" : {
+          return "कृपया अपने फ़ोन पर प्राप्त ओटीपी दर्ज करें";
+        }
+        case "OTP" : {
+          return "ओ.टी.पी."
+        }
+        case "Submit" : {
+          return "सबमिट करें";
+        }
     }
   }
   return text;
@@ -259,7 +268,7 @@ export class LoginPageComponent implements OnInit {
       message: this.getTranslation("Registration successful"),
       buttons: [this.getTranslation("Close")]
     });
-
+  
     await alert.present();
   }
 
@@ -269,7 +278,7 @@ export class LoginPageComponent implements OnInit {
 
   completeRegistration() {
 
-    this.presentAlertForRegistration();
+    this.presentAlertPrompt();
     console.log(this.registrationForm.value);
     let  loginDetails = {
       userName: '',
@@ -409,6 +418,31 @@ hideShowLoginPassword() {
   this.loginPasswordType = this.loginPasswordType === 'text' ? 'password' : 'text';
   this.loginPasswordIcon = this.loginPasswordIcon === 'eye-off' ? 'eye' : 'eye-off';
 }
+
+async presentAlertPrompt() {
+  const alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header: this.getTranslation("Please enter the OTP you received on your mobile number"),
+    inputs: [
+      {
+        name: this.getTranslation("OTP"),
+        type: 'password',
+        placeholder: 'XXXX'
+      }],
+    buttons: [{
+        text: this.getTranslation("Submit"),
+        handler: () => {
+          console.log('Confirm Ok');
+          this.presentAlertForRegistration();
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+}
+
+
 
 }
 
