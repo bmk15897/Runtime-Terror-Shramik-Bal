@@ -12,7 +12,6 @@
 1. [Versioning](#versioning)
 1. [Contributors](#contributors)
 1. [License](#license)
-1. [Acknowledgments](#acknowledgments)
 
 ## Short description
 
@@ -30,11 +29,11 @@ As a solution, we propose Shramik Bal – A mobile application which will work a
 
 ## Demo video
 
-[![Watch the video](https://github.com/Code-and-Response/Liquid-Prep/blob/master/images/IBM-interview-video-image.png)](https://youtu.be/vOgCOoy_Bx0)
+[![Watch the video](https://github.com/bmk15897/Runtime-Terror-Shramik-Bal/blob/master/f53d86b3-4841-4087-b084-87718360387e_200x200.png)](https://youtu.be/vOgCOoy_Bx0)
 
 ## The architecture
 
-![Video transcription/translation app](https://developer.ibm.com/developer/tutorials/cfc-starter-kit-speech-to-text-app-example/images/cfc-covid19-remote-education-diagram-2.png)
+![Shramik Bal Application](https://github.com/bmk15897/Runtime-Terror-Shramik-Bal/blob/master/Runtime%20Terror_Shramik%20Bal_Architecture.JPG)
 
 1. The user navigates to the site and uploads a video file.
 2. Watson Speech to Text processes the audio and extracts the text.
@@ -60,11 +59,11 @@ The application will be free cost for all users for the first month (from the da
 
 We will conduct awareness campaigns and training sessions across India. In order to build a database we will explore options of existing databases that contain information about laborers. Once we have data of at least 20K laborers per state we will target to roll out the application to laborers and contractors.
 
-[More detail is available here](DESCRIPTION.md)
+[More detail is available here](https://github.com/bmk15897/Runtime-Terror-Shramik-Bal/blob/master/Women%20Hackathon_Runtime%20Terror_Participation.pdf)
 
 ## Project roadmap
 
-![Roadmap](roadmap.jpg)
+![Roadmap](https://github.com/bmk15897/Runtime-Terror-Shramik-Bal/blob/master/Runtime%20Terror_Shramik%20Bal_Road%20Map.JPG)
 
 ## Getting started
 
