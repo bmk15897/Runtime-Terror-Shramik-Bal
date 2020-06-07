@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -35,7 +37,7 @@ public interface RequirementServiceInterface {
 	ArrayList<LabourerBasicProfile> findLabourersByFieldAndState(String field, String state);
 	ArrayList<WorkerApplicationProfile> findWAByContractor(String contractorUsername);
 	UserProfileBean updateProfileFields(UserProfileBean userProfileBean);
-	UserProfileBean updateProfilePassword(Map<String, String> values);
+	UserProfileBean updateProfilePassword(Map<String, String> values) throws NoSuchAlgorithmException, InvalidKeySpecException;
 	ArrayList<ContractorRequirement> findActiveCRByContractor(String contractorId);
 	ArrayList<ContractorRequirement> findInActiveCRByContractor(String contractorId);
 	ArrayList<ContractorRequirementProfile> findCRByFieldAndSiteState (String field,String state);

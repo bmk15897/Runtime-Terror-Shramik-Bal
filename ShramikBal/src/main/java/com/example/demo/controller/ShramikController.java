@@ -1,8 +1,9 @@
 package com.example.demo.controller;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,7 @@ import com.example.demo.querybean.UserProfileBean;
 import com.example.demo.querybean.WorkerApplicationProfile;
 import com.example.demo.service.LoginService;
 import com.example.demo.service.RequirementService;
+import com.example.demo.supportAlgorithms.PwdHasher;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,26 +41,32 @@ public class ShramikController {
 	RequirementService requirementService;
 
 	@PostMapping("/signin")
-	public ResponseEntity<CustomResponseEntity> shramikLogin(@RequestBody UserLoginBean userLoginBean) {
+	public ResponseEntity<CustomResponseEntity> shramikLogin(@RequestBody UserLoginBean userLoginBean) throws NoSuchAlgorithmException, InvalidKeySpecException {
 		log.info("Post Request Url - signin");
 		UserProfileBean user = loginService.findUserByUserName(userLoginBean.getUserName());
 		CustomResponseEntity customResponseEntity = new CustomResponseEntity();
 		if (user != null) {
-			if (userLoginBean.getPassword().equals(user.getLoginDetails().getPassword())) {
+			/*if (userLoginBean.getPassword().equals(user.getLoginDetails().getPassword())) {
+				customResponseEntity.setObject(user);
+				customResponseEntity.setMessage("Successful sign-in");
+				return new ResponseEntity<>(customResponseEntity, HttpStatus.OK);
+			}*/
+			if (PwdHasher.validatePassword(userLoginBean.getPassword(),user.getLoginDetails().getPassword())) {
+				user.getLoginDetails().setPassword(null);
 				customResponseEntity.setObject(user);
 				customResponseEntity.setMessage("Successful sign-in");
 				return new ResponseEntity<>(customResponseEntity, HttpStatus.OK);
 			}
 			customResponseEntity.setMessage("Password not found");
-			return new ResponseEntity<>(null, HttpStatus.OK);
+			return new ResponseEntity<>(customResponseEntity, HttpStatus.OK);
 		} else {
 			customResponseEntity.setMessage("Username not found");
-			return new ResponseEntity<>(null, HttpStatus.OK);
+			return new ResponseEntity<>(customResponseEntity, HttpStatus.OK);
 		}
 	}
 
 	@PostMapping("/signup") 
-	public ResponseEntity<CustomResponseEntity> shramikSignup(@RequestBody UserProfileBean userProfileBean) {
+	public ResponseEntity<CustomResponseEntity> shramikSignup(@RequestBody UserProfileBean userProfileBean) throws NoSuchAlgorithmException, InvalidKeySpecException {
 		log.info("Post Request Url - /signup");
 		CustomResponseEntity customResponseEntity = new CustomResponseEntity();
 		if(loginService.findUserByUserName(userProfileBean.getLoginDetails().getUserName())!=null) {
@@ -81,7 +89,7 @@ public class ShramikController {
 	}
 
 	@PostMapping("/update-profile-password")
-	public ResponseEntity<CustomResponseEntity> updateProfilePassword(@RequestBody Map<String, String> values) {
+	public ResponseEntity<CustomResponseEntity> updateProfilePassword(@RequestBody Map<String, String> values) throws NoSuchAlgorithmException, InvalidKeySpecException {
 		log.info("Post Request Url - /update-profile-password");
 		CustomResponseEntity customResponseEntity = new CustomResponseEntity();
 		customResponseEntity.setMessage("Profile password updated");

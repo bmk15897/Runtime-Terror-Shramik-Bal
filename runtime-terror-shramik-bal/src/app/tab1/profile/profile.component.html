@@ -13,9 +13,14 @@
 </ion-header>
 
   <div class="card">
-    <div class="header" style="align:left; background-image: url('https://ichef.bbci.co.uk/news/976/cpsprodpb/5403/production/_104970512_mediaitem104970511.jpg')">
+    <div *ngIf="profileDetails.loginDetails.type=='C'" class="header" style="align:left; background-image: url({{profileDetails.contractor.imageUrl}})">
       <div class="avatar">
-        <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/5403/production/_104970512_mediaitem104970511.jpg" alt="">
+        <img src="{{profileDetails.contractor.imageUrl}}" alt="Contractor image">
+      </div>
+    </div>
+    <div *ngIf="profileDetails.loginDetails.type=='L'" class="header" style="align:left; background-image: url({{profileDetails.labourer.imageUrl}})">
+      <div class="avatar">
+        <img src="{{profileDetails.labourer.imageUrl}}" alt="Labourer image">
       </div>
     </div>
     <div class="card-body">
@@ -38,7 +43,7 @@
         <h4 *ngIf="profileDetails.loginDetails.type=='L'">{{profileDetails.labourer.city}}</h4>
     </div>
   </div>
-  <ion-card style="margin-top:-30%;">
+  <ion-card style="margin-top:-110%;">
     <ion-card-header size="small" expand="block" class="about-card-header" style="padding:6px;">
       <p style="size: 20px; font-weight: bold; text-decoration: underline;"> {{generateTranslation("About")}} :</p>
     </ion-card-header>

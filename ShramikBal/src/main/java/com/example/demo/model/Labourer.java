@@ -38,7 +38,7 @@ public class Labourer {
 	@Column(name="name")
 	private String name;
 		
-	@Column(name="aadhaar_id", unique = true, nullable = true)
+	@Column(name="aadhaar_id")
 	private String aadhaarId;
 	
 	@Column(name="years_of_experience")

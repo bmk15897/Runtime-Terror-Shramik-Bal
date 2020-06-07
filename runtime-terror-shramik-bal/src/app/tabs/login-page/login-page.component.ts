@@ -36,7 +36,6 @@ export class LoginPageComponent implements OnInit {
     address: new FormControl('',[Validators.required]),
     city: new FormControl('',[Validators.required]),
     state: new FormControl('',[Validators.required]),
-    age: new FormControl('',[Validators.required]),
     personOrGroup : new FormControl('',[]),
     groupStrength : new FormControl(1,[]),
     specialization : new FormControl('',[]),

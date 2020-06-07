@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -21,6 +23,7 @@ import com.example.demo.querybean.ContractorRequirementRequest;
 import com.example.demo.querybean.LabourerBasicProfile;
 import com.example.demo.querybean.UserProfileBean;
 import com.example.demo.querybean.WorkerApplicationProfile;
+import com.example.demo.supportAlgorithms.PwdHasher;
 
 @Service
 public class RequirementService implements RequirementServiceInterface{
@@ -95,14 +98,14 @@ public class RequirementService implements RequirementServiceInterface{
 	}
 
 	@Override
-	public UserProfileBean updateProfilePassword(Map<String, String> values) {
+	public UserProfileBean updateProfilePassword(Map<String, String> values) throws NoSuchAlgorithmException, InvalidKeySpecException {
 		UserProfileBean userProfileBean = new UserProfileBean();
 		String oldPassword = values.get("oldPassword");
 		String newPassword = values.get("newPassword");
 		String username = values.get("userName");
 		LoginDetails loginDetails = loginDetailsDAO.findByUserName(username);
-		if(loginDetails.getPassword().equals(oldPassword)) {
-			loginDetails.setPassword(newPassword);
+		if(PwdHasher.validatePassword(oldPassword,loginDetails.getPassword())) {
+			loginDetails.setPassword(PwdHasher.generateStorngPasswordHash(newPassword));
 			loginDetailsDAO.saveLoginDetails(loginDetails);
 			if(loginDetails.getType().equals("L")) {
 				Labourer labourer = labourersDAO.findByLoginDetails(loginDetails);

@@ -22,11 +22,11 @@ export class ProfileComponent implements OnInit {
 
     if(this.universalSharedService.userType=="CONTRACTOR") {
       this.profileDetails=this.universalSharedService.userObject;
-      this.contentheight='200px';
+      this.contentheight='240px';
     }
     else {
       this.profileDetails=this.universalSharedService.userObject;
-      this.contentheight='280px';
+      this.contentheight='300px';
     }
     console.log(this.universalSharedService.userObject);
  }
