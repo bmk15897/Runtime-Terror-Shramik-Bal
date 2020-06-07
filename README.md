@@ -49,11 +49,11 @@ Anyone looking for resources can post the requirement and nature of the task .Th
 
 #### Languages
 
-Currently application is available in Hindi (national language) and English
+Currently application is available in Hindi and English.
 
 ##### Sustainability
 
-The application will be free cost for the contractors for the first month (from the date of registration) so we can build a customer base. Post which we plan to charge a subscription fee for them on the basis of number of profiles required. No fees will be charged to labourers.
+The application will be free cost for the contractors for the first month (from the date of registration) so we can build a customer base. Post which we plan to charge a subscription fee for them on the basis of number of labourers required. No fees will be charged to labourers.
 
 ##### Go Live Approach
 
