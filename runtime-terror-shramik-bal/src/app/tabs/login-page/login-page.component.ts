@@ -338,6 +338,11 @@ export class LoginPageComponent implements OnInit {
       state:null,
       dateOfBirth:null
     };
+
+    let currentYear=new Date().getFullYear();
+    let birthYear : number = +this.registrationForm.controls.dateOfBirth.value.slice(0,4)
+    let age=currentYear-birthYear;
+
     if(this.registeringAsLabourer())
     {
       loginDetails.type = 'L';
@@ -348,6 +353,7 @@ export class LoginPageComponent implements OnInit {
         labourer.personOrGroup = 'G';
         labourer.groupCount = 1;
       }
+
       labourer.loginDetails = loginDetails;
       labourer.name = this.registrationForm.controls.name.value;
       labourer.withUsSince = 2020;
@@ -357,7 +363,7 @@ export class LoginPageComponent implements OnInit {
       labourer.gender = this.registrationForm.controls.gender.value;
       labourer.city = this.registrationForm.controls.city.value;
       labourer.state = this.registrationForm.controls.state.value;
-      labourer.age = this.registrationForm.controls.age.value;
+      labourer.age = age;
       labourer.dateOfBirth = this.registrationForm.controls.dateOfBirth.value;
       labourer.imageUrl=this.registrationForm.controls.imageUrl.value;
       labourer.fieldOfSpecialization = this.registrationForm.controls.specialization.value.join(",");
@@ -368,7 +374,7 @@ export class LoginPageComponent implements OnInit {
       loginDetails.type = 'C';
       contractor.loginDetails = loginDetails;
       contractor.name = this.registrationForm.controls.name.value;
-      contractor.age = this.registrationForm.controls.age.value;
+      contractor.age = age;
       contractor.aadhaarId = this.registrationForm.controls.aadhaarId.value;
       contractor.contactNo=this.registrationForm.controls.contactNo.value;
       contractor.address = this.registrationForm.controls.address.value;
