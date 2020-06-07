@@ -34,10 +34,11 @@ As a solution, we propose Shramik Bal – A mobile application which will work a
 
 ![Shramik Bal Application](https://github.com/bmk15897/Runtime-Terror-Shramik-Bal/blob/master/Runtime%20Terror_Shramik%20Bal_Architecture.JPG)
 
-1. The user navigates to the site and uploads a video file.
-2. Watson Speech to Text processes the audio and extracts the text.
-3. Watson Translation (optionally) can translate the text to the desired language.
-4. The app stores the translated text as a document within Object Storage.
+1. Labourers and contractors open the mobile application and register.
+2. Contractors create requirement applications using the forms to the requirement data.
+3. Labourers surf for the contractor applications and apply.
+4. Contractors can approve or reject the workers' requests.
+5. Labourers and contractors can view notifications and update their profile details too.
 
 ## Long description
 
@@ -114,9 +115,10 @@ We used [Git](https://git-scm.com/) for versioning.
 
 * **Nensukh Ghute** - *Mentor*
 * **Minu Raju** - *Idea initiator and Business Analyst*
-* **Neha Rathod** - *Documentation*
-* **Prajakta Patankar** - *Documentation*
 * **Shreya Joshi** - *Frontend Development*
 * **Bharati Kulkarni** - *Backend Development*
+* **Prajakta Patankar** - *Documentation*
+* **Neha Rathod** - *Documentation*
+
 
 See also the list of [contributors](https://github.com/bmk15897/Runtime-Terror-Shramik-Bal/graphs/contributors) who participated in the development of this project.
