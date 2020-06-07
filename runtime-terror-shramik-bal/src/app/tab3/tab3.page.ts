@@ -118,6 +118,7 @@ public createApplicationForm = new FormGroup({
     this.presentAlert();
     this.shramikHttpService.postContractorRequirement(contractorRequirement).subscribe(data => {
       console.log(data);
+      this.createApplicationForm.reset();
     });
   }
 
