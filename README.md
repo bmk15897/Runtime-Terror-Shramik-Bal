@@ -35,7 +35,7 @@ As a solution, we propose Shramik Bal – A mobile application which will work a
 ![Shramik Bal Application](https://github.com/bmk15897/Runtime-Terror-Shramik-Bal/blob/master/Runtime%20Terror_Shramik%20Bal_Architecture.JPG)
 
 1. Labourers and contractors open the mobile application and register.
-2. Contractors create requirement applications using the forms to the requirement data.
+2. Contractors create requirement applications using the forms as per the requirements.
 3. Labourers surf for the contractor applications and apply.
 4. Contractors can approve or reject the workers' requests.
 5. Labourers and contractors can view notifications and update their profile details too.
@@ -53,7 +53,7 @@ Currently application is available in Hindi (national language) and English
 
 ##### Sustainability
 
-The application will be free cost for all users for the first month (from the date of registration) so we can build a customer base. Post which we plan to charge a subscription fee for the contractors on the basis of number of profiles required
+The application will be free cost for the contractors for the first month (from the date of registration) so we can build a customer base. Post which we plan to charge a subscription fee for them on the basis of number of profiles required. No fees will be charged to labourers.
 
 ##### Go Live Approach
 
