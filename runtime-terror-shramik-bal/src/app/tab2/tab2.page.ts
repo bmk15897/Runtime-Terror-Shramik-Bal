@@ -229,5 +229,17 @@ buttonColor(a) {
     return "dark";
   }
 }
+
+generateRandomRating() {
+  return this.getRandomInt(20,50)/10;
+}
+
+generateRandomServicesProvided() {
+  return this.getRandomInt(5,20);
+}
+
+getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+} 
     
 }
