@@ -11,7 +11,6 @@
 1. [Built with](#built-with)
 1. [Versioning](#versioning)
 1. [Contributors](#contributors)
-1. [License](#license)
 
 ## Short description
 
@@ -121,7 +120,3 @@ We used [Git](https://git-scm.com/) for versioning.
 * **Bharati Kulkarni** - *Backend Development*
 
 See also the list of [contributors](https://github.com/bmk15897/Runtime-Terror-Shramik-Bal/graphs/contributors) who participated in the development of this project.
-
-## License
-
-This project is licensed under the Apache 2 License - see the [LICENSE](LICENSE) file for details
