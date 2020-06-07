@@ -41,7 +41,8 @@ export class LoginPageComponent implements OnInit {
     groupStrength : new FormControl(1,[]),
     specialization : new FormControl('',[]),
     yearsOfExperience :new FormControl('',[]),
-    dateOfBirth: new FormControl('',[Validators.required])
+    dateOfBirth: new FormControl('',[Validators.required]),
+    imageUrl : new FormControl('',[Validators.required])
   });
 
   public userTypes=["Worker","Contractor"];
@@ -230,6 +231,9 @@ export class LoginPageComponent implements OnInit {
         case "Submit" : {
           return "सबमिट करें";
         }
+        case "Image URL": {
+          return "फोटो की यूआरएल";
+        }
     }
   }
   return text;
@@ -355,6 +359,7 @@ export class LoginPageComponent implements OnInit {
       labourer.state = this.registrationForm.controls.state.value;
       labourer.age = this.registrationForm.controls.age.value;
       labourer.dateOfBirth = this.registrationForm.controls.dateOfBirth.value;
+      labourer.imageUrl=this.registrationForm.controls.imageUrl.value;
       labourer.fieldOfSpecialization = this.registrationForm.controls.specialization.value.join(",");
       labourer.yearsOfExperience = this.registrationForm.controls.yearsOfExperience.value;
       registrationDetails.loginDetails = loginDetails;
@@ -370,6 +375,7 @@ export class LoginPageComponent implements OnInit {
       contractor.gender = this.registrationForm.controls.gender.value;
       contractor.city = this.registrationForm.controls.city.value;
       contractor.state = this.registrationForm.controls.state.value;
+      contractor.imageUrl=this.registrationForm.controls.imageUrl.value;
       contractor.dateOfBirth = this.registrationForm.controls.dateOfBirth.value;
       registrationDetails.loginDetails = loginDetails;
       registrationDetails.contractor = contractor;
