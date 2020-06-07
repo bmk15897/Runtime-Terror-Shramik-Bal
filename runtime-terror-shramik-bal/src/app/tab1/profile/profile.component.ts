@@ -16,7 +16,7 @@ export class ProfileComponent implements OnInit {
   qrData=null;
   scannedCode=null;
   createdCode=null;
-  contentheight=null;
+  contentheight='280px';
 
   ngOnInit() {
 
@@ -29,7 +29,7 @@ export class ProfileComponent implements OnInit {
       this.contentheight='280px';
     }
     console.log(this.universalSharedService.userObject);
-  }
+ }
   
   openPicture() {
     console.log('Picture clicked');

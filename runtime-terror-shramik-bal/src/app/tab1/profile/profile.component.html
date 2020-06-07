@@ -1,3 +1,5 @@
+
+<ion-content fullscreen>
 <ion-header>
   <ion-toolbar class="new-background-color">
     <ion-buttons slot="start">
@@ -10,7 +12,6 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen>
   <div class="card">
     <div class="header" style="align:left; background-image: url('https://ichef.bbci.co.uk/news/976/cpsprodpb/5403/production/_104970512_mediaitem104970511.jpg')">
       <div class="avatar">
@@ -35,18 +36,10 @@
         </h3>
         <h4 *ngIf="profileDetails.loginDetails.type=='C'">{{profileDetails.contractor.city}}</h4>
         <h4 *ngIf="profileDetails.loginDetails.type=='L'">{{profileDetails.labourer.city}}</h4>
-      <!-- <ion-button expand="full" color="danger" (click)="generateQRCode()"> {{generateTranslation("Generate QR Code")}}</ion-button> -->
     </div>
-    <!-- <ion-card *ngIf="profileDetails.loginDetails.type=='C'">
-      <ngx-qrcode [qrc-value]="profileDetails.contractor.contactNo"></ngx-qrcode>
-    </ion-card>
-    <ion-card *ngIf="profileDetails.loginDetails.type=='L'">
-      <ngx-qrcode [qrc-value]="profileDetails.labourer.contactNo"></ngx-qrcode>
-    </ion-card> -->
   </div>
-</div>
-  <ion-card>
-    <ion-card-header size="small" expand="block" class="about-card-header">
+  <ion-card style="margin-top:-30%;">
+    <ion-card-header size="small" expand="block" class="about-card-header" style="padding:6px;">
       <p style="size: 20px; font-weight: bold; text-decoration: underline;"> {{generateTranslation("About")}} :</p>
     </ion-card-header>
 
@@ -77,6 +70,7 @@
 
     </ion-content>
     </ion-card>
+    </div>
 </ion-content>
 
 
