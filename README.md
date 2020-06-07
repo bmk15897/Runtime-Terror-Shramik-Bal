@@ -8,4 +8,4 @@
 
 + Ionic (frontend)
 + Spring boot (backend)
-+ IBM Cloud HB2 Instance
++ IBM Cloud DB2 Instance
