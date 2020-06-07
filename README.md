@@ -59,7 +59,7 @@ The application will be free cost for the contractors for the first month (from 
 
 We will conduct awareness campaigns and training sessions across India. In order to build a database we will explore options of existing databases that contain information about laborers. Once we have data of at least 20K laborers per state we will target to roll out the application to laborers and contractors.
 
-[More detail is available here](https://github.com/bmk15897/Runtime-Terror-Shramik-Bal/blob/master/Women%20Hackathon_Runtime%20Terror_Participation.pdf)
+[More detail is available here](https://github.com/bmk15897/Runtime-Terror-Shramik-Bal/blob/master/Hackathon-%20Runtime%20Terror%20(005)_Draft_5_mail_hackathon-final_doc.pdf)
 
 ## Project roadmap
 
