@@ -159,13 +159,13 @@ export class LoginPageComponent implements OnInit {
           return "आपको कितने सालों का अनुभव है?";
         }
         case "Worker" : {
-          return "मजदूर";
+          return "श्रमिक";
         }
         case "Contractor" : {
           return "ठेकेदार";
         }
         case "Register as Contractor or Worker?" : {
-          return "आप मजदूर हैं या ठेकेदार ?";
+          return "आप श्रमिक हैं या ठेकेदार ?";
         }
         case "Agriculture" : {
           return "कृषि";
@@ -269,9 +269,15 @@ export class LoginPageComponent implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'error-popup',
       message: this.getTranslation("Registration successful"),
-      buttons: [this.getTranslation("Close")]
+      buttons: [{
+        text: this.getTranslation("Close"),
+        handler: () => {
+          console.log('Registration successful');
+          this.initialLoad=true;
+        }
+      }
+      ]
     });
-  
     await alert.present();
   }
 
@@ -311,9 +317,9 @@ export class LoginPageComponent implements OnInit {
       city:null,
       state:null,
       fieldOfSpecialization:null,
-      avgRating:null,
+      avgRating:this.generateRandomRating(),
       withUsSince:null,
-      noOfServicesProvided:0,
+      noOfServicesProvided:this.generateRandomServicesProvided(),
       contactNo:null,
       imageUrl:null,
       groupCount:null,
@@ -329,8 +335,8 @@ export class LoginPageComponent implements OnInit {
       gender:null,
       aadhaarId:null,
       contactNo:null,
-      noOfServicesUsed:0,
-      avgRating:null,
+      noOfServicesUsed:this.generateRandomServicesProvided(),
+      avgRating:this.generateRandomRating(),
       imageUrl:null,
       address:null,
       city:null,
@@ -445,6 +451,8 @@ async presentAlertPrompt() {
         handler: () => {
           console.log('Confirm Ok');
           this.presentAlertForRegistration();
+          this.loginForm.controls.username.setValue(this.registrationForm.controls.username.value);
+          this.loginForm.controls.password.setValue(this.registrationForm.controls.password.value);
         }
       }
     ]
@@ -453,7 +461,17 @@ async presentAlertPrompt() {
   await alert.present();
 }
 
+  generateRandomRating() {
+    return this.getRandomInt(20,50)/10;
+  }
 
+  generateRandomServicesProvided() {
+    return this.getRandomInt(5,20);
+  }
+
+  getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
 
 }
 

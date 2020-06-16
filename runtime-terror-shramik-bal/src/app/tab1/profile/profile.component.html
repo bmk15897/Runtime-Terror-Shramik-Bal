@@ -43,13 +43,13 @@
         <h4 *ngIf="profileDetails.loginDetails.type=='L'">{{profileDetails.labourer.city}}</h4>
     </div>
   </div>
-  <ion-card  [style.margin-top]="profileDetails.loginDetails.type=='L' ? '-30%' : '-45%'">
+  <ion-card  [style.margin-top]="profileDetails.loginDetails.type=='L' ? '-40%' : '-45%'">
     <ion-card-header size="small" expand="block" class="about-card-header" style="padding:6px;">
       <p style="size: 20px; font-weight: bold; text-decoration: underline;"> {{generateTranslation("About")}} :</p>
     </ion-card-header>
 
     <ion-content style="height:{{contentheight}}; padding:left: 10px;">  
-    <p *ngIf="profileDetails.loginDetails.type=='L'"> <span style="color:black; font-weight: bold; padding-top:20px;" > {{generateTranslation("Field of Specialization")}} :</span> {{generateTranslation(profileDetails.labourer.fieldOfSpecialization)}}</p> 
+    <p *ngIf="profileDetails.loginDetails.type=='L'" style="padding-top:7px;"> <span style="color:black; font-weight: bold; padding-top:20px;" > {{generateTranslation("Field of Specialization")}} :</span> <span *ngFor="let field of profileDetails.labourer.fieldOfSpecialization.split(',')"> {{generateTranslation(field)}}, </span> </p>
 
       <p *ngIf="profileDetails.loginDetails.type=='C'"> <span style="color:black; font-weight: bold;">  {{generateTranslation("Rating")}} :</span> {{profileDetails.contractor.avgRating}} <ion-icon name="star"></ion-icon></p> 
 

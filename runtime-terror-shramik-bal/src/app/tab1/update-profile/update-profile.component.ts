@@ -168,9 +168,9 @@ export class UpdateProfileComponent implements OnInit {
         case "Date of Birth" : {
           return "जन्म तिथि";
         }
+      }
     }
     return text;
-  }
   }
 
 
