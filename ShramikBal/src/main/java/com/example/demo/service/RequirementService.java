@@ -537,12 +537,12 @@ public class RequirementService implements RequirementServiceInterface{
 		String[] fields = field.split(",");
 		LoginDetails loginDetails = loginDetailsDAO.findByUserName(lUserName);
 		if(loginDetails!=null) {
-		for(String f: fields) {
-			ArrayList<ContractorRequirement> contractorRequirements = contractorRequirementDAO.findCRForLabourerHome(siteCity, siteState, f);
 			Labourer labourer = labourersDAO.findByLoginDetails(loginDetails);
 			ArrayList<Integer> workerApplications = workerApplicationDAO.findContractorRequirementIdsByLabourer(labourer);
+			for(String f: fields) {
+			ArrayList<ContractorRequirement> contractorRequirements = contractorRequirementDAO.findCRForLabourerHome(siteCity, siteState, f);	
 			
-			
+			System.out.println(workerApplications.size());
 			for(ContractorRequirement contractorRequirement: contractorRequirements) {
 				if(!workerApplications.contains(contractorRequirement.getContractorRequirementId())) {
 					ContractorRequirementProfile contractorRequirementProfile = new ContractorRequirementProfile();

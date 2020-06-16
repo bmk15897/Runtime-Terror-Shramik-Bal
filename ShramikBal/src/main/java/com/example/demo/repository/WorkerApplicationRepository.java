@@ -18,6 +18,7 @@ public interface WorkerApplicationRepository extends JpaRepository<WorkerApplica
 	Optional<WorkerApplication> findByWorkerApplicationId(int workAppId);
 	ArrayList<WorkerApplication> findByLabourer(Labourer labourer);
 	
-	@Query("select u.contractorRequirementId from WorkerApplication u where u.labourer=?1")
-	ArrayList<Integer> findWorkerApplicationIdsByLabourer(Labourer labourer);
+	//value = "select contractor_requirement_id from worker_application where labourer_id=?1;", nativeQuery = true
+	@Query(value = "select contractor_requirement_id from worker_application where labourer_id=?1", nativeQuery = true)
+	ArrayList<Integer> findWorkerApplicationIdsByLabourer(int labourer);
 }

@@ -46,7 +46,7 @@ public class WorkerApplicationDAO implements WorkerApplicationDAOInterface{
 
 	@Override
 	public ArrayList<Integer> findContractorRequirementIdsByLabourer(Labourer labourer) {
-		ArrayList<Integer> workerApplicationIds = workerApplicationRepository.findWorkerApplicationIdsByLabourer(labourer);
+		ArrayList<Integer> workerApplicationIds = workerApplicationRepository.findWorkerApplicationIdsByLabourer(labourer.getLabourerId());
 		return workerApplicationIds;
 	}
 
