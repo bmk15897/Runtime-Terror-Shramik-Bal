@@ -107,6 +107,9 @@ public workerHistory=[];
         case "Description" : {
           return "विवरण";
         }
+        case "Pending" : {
+          return "अपूर्ण";
+        }
     }
     }
     return text;
@@ -116,8 +119,11 @@ public workerHistory=[];
     if(str=='Y') {
       return "Yes";
     }
-    else {
+    else if(str=='N'){
       return "No";
+    }
+    else {
+      return "Pending";
     }
   }
 
