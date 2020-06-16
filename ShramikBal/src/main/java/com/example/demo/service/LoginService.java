@@ -67,13 +67,14 @@ public class LoginService implements LoginServiceInterface{
 		LoginDetails ld = userProfileBean.getLoginDetails();
 		ld.setPassword(newPwd);
 		LoginDetails loginDetails = loginDetailsDAO.saveLoginDetails(ld);
+		System.out.println(loginDetails.getUserId());
 		if(userProfileBean.getLoginDetails().getType().equals(TypeLabourer)) {
 			Labourer labourer = userProfileBean.getLabourer();
 			labourer.setLoginDetails(loginDetails);
 			labourer.setAvgRating(0);
 			labourer.setNoOfServicesProvided(0);
 			labourer.setWithUsSince(Year.now().getValue());
-			labourersDAO.saveLabourer(labourer);
+			labourer = labourersDAO.saveLabourer(labourer);
 			userProfileBean.setLoginDetails(loginDetails);
 			userProfileBean.setLabourer(labourer);
 			return userProfileBean;
@@ -83,7 +84,7 @@ public class LoginService implements LoginServiceInterface{
 			contractor.setAvgRating(0);
 			contractor.setNoOfServicesUsed(0);
 			contractor.setWithUsSince(Year.now().getValue());
-			contractorsDAO.saveContractor(contractor);
+			contractor = contractorsDAO.saveContractor(contractor);
 			userProfileBean.setLoginDetails(loginDetails);
 			userProfileBean.setContractor(contractor);
 			return userProfileBean;

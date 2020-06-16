@@ -59,6 +59,7 @@ public class RequirementService implements RequirementServiceInterface{
 		LoginDetails loginDetails = loginDetailsDAO.findByUserName(username);
 		if(loginDetails!=null) {
 			Contractor contractor = contractorsDAO.findByLoginDetails(loginDetails);
+			System.out.println(contractor);
 			return contractor;
 		} else {
 			return null;
@@ -259,6 +260,7 @@ public class RequirementService implements RequirementServiceInterface{
 			basicProfile.setGender(labourer.getGender());
 			basicProfile.setAvgRating(labourer.getAvgRating());
 			basicProfile.setCity(labourer.getCity());
+			basicProfile.setYearsOfExperience(labourer.getYearsOfExperience());
 			basicProfile.setUsername(labourer.getLoginDetails().getUserName());
 			basicProfile.setFieldOfSpecialization(labourer.getFieldOfSpecialization());
 			basicProfile.setGroupCount(labourer.getGroupCount());
@@ -527,6 +529,31 @@ public class RequirementService implements RequirementServiceInterface{
 		} else {
 			return null;
 		}
+	}
+
+	@Override
+	public ArrayList<ContractorRequirementProfile> findCRForLabourerHome(String siteCity, String siteState, String field) {
+		ArrayList<ContractorRequirementProfile> contractorRequirementProfiles = new ArrayList<>();
+		String[] fields = field.split(",");
+		for(String f: fields) {
+			ArrayList<ContractorRequirement> contractorRequirements = contractorRequirementDAO.findCRForLabourerHome(siteCity, siteState, f);
+			for(ContractorRequirement contractorRequirement: contractorRequirements) {
+				ContractorRequirementProfile contractorRequirementProfile = new ContractorRequirementProfile();
+				contractorRequirementProfile.setContractorName(contractorRequirement.getContractorOb().getName());
+				contractorRequirementProfile.setContractorRequirementId(contractorRequirement.getContractorRequirementId());
+				contractorRequirementProfile.setField(contractorRequirement.getField());
+				contractorRequirementProfile.setIsActive(contractorRequirement.getIsActive());
+				contractorRequirementProfile.setNoOfPeople(contractorRequirement.getNoOfPeople());
+				contractorRequirementProfile.setNoOfPeopleApplied(contractorRequirement.getNoOfPeopleApplied());
+				contractorRequirementProfile.setSiteAddress(contractorRequirement.getSiteAddress());
+				contractorRequirementProfile.setSiteCity(contractorRequirement.getSiteCity());
+				contractorRequirementProfile.setCreatedDate(contractorRequirement.getCreatedDate());
+				contractorRequirementProfile.setSiteState(contractorRequirement.getSiteState());
+				contractorRequirementProfile.setButtonText("Apply");
+				contractorRequirementProfiles.add(contractorRequirementProfile);
+			}
+		}
+		return contractorRequirementProfiles;
 	}
 
 }

@@ -73,4 +73,15 @@ public class ContractorRequirementDAO implements ContractorRequirementDAOInterfa
 		return contractorRequirements;
 	}
 
+	@Override
+	public ArrayList<ContractorRequirement> findCRForLabourerHome(String siteCity, String siteState, String field) {
+		if(contractorRequirementRepository.selectCountSiteCity(siteCity)<5) {
+			if(contractorRequirementRepository.selectCountSiteState(siteState)<5) {
+				return contractorRequirementRepository.findByField(field);
+			}
+			return contractorRequirementRepository.findByFieldAndSiteState(field, siteState);
+		}
+		return contractorRequirementRepository.findByFieldAndSiteCity(field, siteCity);
+	}
+
 }

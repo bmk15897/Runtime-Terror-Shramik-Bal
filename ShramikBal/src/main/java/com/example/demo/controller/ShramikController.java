@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,6 +42,11 @@ public class ShramikController {
 	@Autowired
 	RequirementService requirementService;
 
+	@PutMapping("/{id}")
+	public String getHello(@PathVariable String id, @RequestBody String id1) {
+		return id;
+	}
+	
 	@PostMapping("/signin")
 	public ResponseEntity<CustomResponseEntity> shramikLogin(@RequestBody UserLoginBean userLoginBean) throws NoSuchAlgorithmException, InvalidKeySpecException {
 		log.info("Post Request Url - signin");
@@ -52,7 +59,7 @@ public class ShramikController {
 				return new ResponseEntity<>(customResponseEntity, HttpStatus.OK);
 			}*/
 			if (PwdHasher.validatePassword(userLoginBean.getPassword(),user.getLoginDetails().getPassword())) {
-				user.getLoginDetails().setPassword(null);
+//				user.getLoginDetails().setPassword(null);
 				customResponseEntity.setObject(user);
 				customResponseEntity.setMessage("Successful sign-in");
 				return new ResponseEntity<>(customResponseEntity, HttpStatus.OK);
@@ -64,6 +71,8 @@ public class ShramikController {
 			return new ResponseEntity<>(customResponseEntity, HttpStatus.OK);
 		}
 	}
+	
+	
 
 	@PostMapping("/signup") 
 	public ResponseEntity<CustomResponseEntity> shramikSignup(@RequestBody UserProfileBean userProfileBean) throws NoSuchAlgorithmException, InvalidKeySpecException {
@@ -283,6 +292,15 @@ public class ShramikController {
 		}
 	}
 	
+	@PostMapping("/get-CR-for-labourer-home")
+	public ResponseEntity<CustomResponseEntity> findContractorRequirementsForLabourerHome(@RequestBody Map<String,String> values) {
+		log.info("Post Request Url - /get-CR-for-labourer-home");
+		CustomResponseEntity customResponseEntity = new CustomResponseEntity();
+		customResponseEntity.setMessage("Contractor Requirements fetched");
+		customResponseEntity.setObject(requirementService.findCRForLabourerHome(values.get("siteCity"),values.get("siteState"),values.get("fieldOfSpecialization")));
+		return new ResponseEntity<>(customResponseEntity, HttpStatus.OK);
+	}
+	
 	@PostMapping("/get-CR-by-site-city")
 	public ResponseEntity<CustomResponseEntity> findContractorRequirementsBySiteCity(@RequestBody String siteCity) {
 		log.info("Post Request Url - /get-CR-by-site-city");
@@ -350,5 +368,6 @@ public class ShramikController {
 			return new ResponseEntity<>(customResponseEntity, HttpStatus.OK);
 		}
 	}
+	
 	
 }

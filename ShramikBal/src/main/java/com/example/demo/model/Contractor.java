@@ -36,7 +36,7 @@ public class Contractor {
 	@Column(name="name")
 	private String name;
 		
-	@Column(name="aadhaar_id", unique = true, nullable = true)
+	@Column(name="aadhaar_id")
 	private String aadhaarId;
 	
 	@Column(name="contact_no", unique = true, nullable = false)

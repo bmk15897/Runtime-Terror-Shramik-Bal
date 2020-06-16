@@ -15,4 +15,5 @@ public interface ContractorRequirementDAOInterface {
 	ArrayList<ContractorRequirement> findByContractorInActive(Contractor contractor);
 	ArrayList<ContractorRequirement> findByFieldAndSiteState(String field, String state);
 	ArrayList<ContractorRequirement> findCRByField(String field);
+	ArrayList<ContractorRequirement> findCRForLabourerHome(String steCity,String siteState, String field);
 }
