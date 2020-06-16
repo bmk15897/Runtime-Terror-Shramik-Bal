@@ -104,6 +104,9 @@ export class ProfileComponent implements OnInit {
         case "Number of services availed" : {
           return "ऍप के माद्यम से ली गयी सेवाओं की संख्या";
         }
+        case "Domestic Help" : {
+          return "घरेलु मदद";
+        }
       }
     }
     return text;

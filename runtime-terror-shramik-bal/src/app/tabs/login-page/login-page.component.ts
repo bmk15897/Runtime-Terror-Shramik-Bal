@@ -46,7 +46,7 @@ export class LoginPageComponent implements OnInit {
 
   public userTypes=["Worker","Contractor"];
   public workerTypes=["Individual","Group"];
-  public specializationFields=["Agriculture","Construction", "Painters","Sewage Issues","House Shifting Related Help","Public Work"];
+  public specializationFields=["Agriculture","Construction", "Painters","Sewage Issues","House Shifting Related Help","Public Work","Domestic Help"];
   public genderList=[{key:'Male',value:'M'},{key:'Female',value:'F'},{key:'Other',value:'O'}];
 
   public passwordType='password';
@@ -232,6 +232,9 @@ export class LoginPageComponent implements OnInit {
         }
         case "Image URL": {
           return "फोटो की यूआरएल";
+        }
+        case "Domestic Help" : {
+          return "घरेलु मदद";
         }
     }
   }

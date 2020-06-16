@@ -166,6 +166,9 @@ export class Tab2Page {
       case "Sorry, we couldn't find any workers nearby for this search." : {
         return "क्षमा करें, हमें आपकी आवश्यकता के अनुसार श्रमिक नहीं मिले";
       }
+      case "Domestic Help" : {
+        return "घरेलु मदद";
+      }
   }
   }
   return text;

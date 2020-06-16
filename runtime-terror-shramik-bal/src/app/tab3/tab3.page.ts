@@ -11,7 +11,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class Tab3Page {
 
-  public specializationFields = ["Agriculture","Construction", "Painters","Sewage Issues","House Shifting Related Help","Public Work"];
+  public specializationFields = ["Agriculture","Construction", "Painters","Sewage Issues","House Shifting Related Help","Public Work","Domestic Help"];
   public language="";
 
   
@@ -86,6 +86,9 @@ public createApplicationForm = new FormGroup({
         }
         case "State" : {
           return "राज्य";
+        }
+        case "Domestic Help" : {
+          return "घरेलु मदद";
         }
     }
     }

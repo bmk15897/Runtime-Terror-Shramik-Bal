@@ -203,6 +203,9 @@ export class Tab4Page {
         case "Pending" : {
           return "विचाराधीन";
         }
+        case "Domestic Help" : {
+          return "घरेलु मदद";
+        }
       }
     }
     return text;

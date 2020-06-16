@@ -15,7 +15,7 @@ export class UpdateProfileComponent implements OnInit {
 
   public userTypes=["Worker","Contractor"];
   public workerTypes=["Individual","Group"];
-  public specializationFields=["Agriculture","Construction", "Painters","Sewage Issues","House Shifting Related Help","Public Work"];
+  public specializationFields=["Agriculture","Construction", "Painters","Sewage Issues","House Shifting Related Help","Public Work","Domestic Help"];
 
 
   //User's information which will be stored somewhere in an object in universal-service
@@ -167,6 +167,9 @@ export class UpdateProfileComponent implements OnInit {
         }
         case "Date of Birth" : {
           return "जन्म तिथि";
+        }
+        case "Domestic Help" : {
+          return "घरेलु मदद";
         }
       }
     }
