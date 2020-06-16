@@ -180,14 +180,16 @@ export class Tab2Page {
 }
 
 triggerSearch(option) {
-  this.searchResultList=[]
+  this.searchResultList=[];
   console.log('Triggering search for '+option);
   this.noSearchTriggered=false;
   this.isItemAvailable=false;
   this.searchCriteriaOption=option;
 
   this.searchResultList=this.workers.filter(worker => {
-    return worker.fieldOfSpecialization.toLowerCase()==option.toLowerCase()});
+    console.log(worker.fieldOfSpecialization.toLowerCase());
+    console.log(option.toLowerCase());
+    return worker.fieldOfSpecialization.toLowerCase().includes(option.toLowerCase())});
 }
 
 applyNow(a) {

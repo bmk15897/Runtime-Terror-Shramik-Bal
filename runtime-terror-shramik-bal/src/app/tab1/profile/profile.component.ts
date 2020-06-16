@@ -99,7 +99,7 @@ export class ProfileComponent implements OnInit {
           return "ठेकेदार";
         }
         case "LABOURER" : {
-          return "मजदूर";
+          return "श्रमिक";
         }
         case "Number of services availed" : {
           return "ऍप के माद्यम से ली गयी सेवाओं की संख्या";
