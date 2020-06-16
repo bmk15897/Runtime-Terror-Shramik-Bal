@@ -37,7 +37,7 @@ export class Tab2Page {
           fieldOfSpecialization: this.universalSharedService.userObject.labourer.fieldOfSpecialization,
           siteCity: this.universalSharedService.userObject.labourer.city,
           siteState: this.universalSharedService.userObject.labourer.state,
-          userName : this.universalSharedService.userObject.labourer.username
+          userName : this.universalSharedService.userObject.loginDetails.userName
         }
         console.log(req1);
         this.shramikHttpService.getCRForLabourerHome(req1).subscribe(data => {
