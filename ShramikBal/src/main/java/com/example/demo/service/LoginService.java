@@ -71,8 +71,6 @@ public class LoginService implements LoginServiceInterface{
 		if(userProfileBean.getLoginDetails().getType().equals(TypeLabourer)) {
 			Labourer labourer = userProfileBean.getLabourer();
 			labourer.setLoginDetails(loginDetails);
-			labourer.setAvgRating(0);
-			labourer.setNoOfServicesProvided(0);
 			labourer.setWithUsSince(Year.now().getValue());
 			labourer = labourersDAO.saveLabourer(labourer);
 			userProfileBean.setLoginDetails(loginDetails);
@@ -81,8 +79,6 @@ public class LoginService implements LoginServiceInterface{
 		}else {
 			Contractor contractor = userProfileBean.getContractor();
 			contractor.setLoginDetails(loginDetails);
-			contractor.setAvgRating(0);
-			contractor.setNoOfServicesUsed(0);
 			contractor.setWithUsSince(Year.now().getValue());
 			contractor = contractorsDAO.saveContractor(contractor);
 			userProfileBean.setLoginDetails(loginDetails);
