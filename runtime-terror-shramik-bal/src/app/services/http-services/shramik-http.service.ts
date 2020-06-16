@@ -114,4 +114,8 @@ export class ShramikHttpService {
   public getAllInActiveContractorRequirementsforContractor(contractorUserName):Observable<any> {
   	return this.http.post(this.baseUrl+`/get-inactive-CR-by-contractor`,contractorUserName);
   }
+
+  public getCRForLabourerHome(reqDets):Observable<any> {
+        return this.http.post(this.baseUrl+`/get-CR-for-labourer-home`,reqDets);
+  }
 }

@@ -35,9 +35,21 @@
         {{getTranslation("Showing search results for")}} : {{getTranslation(searchCriteriaOption)}}
       </ion-card-header>
     </ion-card>
+    <ion-card expand="block" *ngIf="searchResultList.length==0 && noSearchTriggered==false">
+      <ion-item>
+        <ion-label>
+          <img src="../../assets/icon/noSearchResults.png" style="width:50px;">
+        </ion-label>
+        <ion-card-content style="height:100px">
+          <p style="font-size: 14px;">
+            {{getTranslation("Sorry, we couldn't find any workers nearby for this search.")}}
+          </p>
+        </ion-card-content>
+      </ion-item>
+    </ion-card>
     <ion-card *ngFor="let w of searchResultList">
       <ion-card-header size="small" expand="block" class="new-background-color">
-        {{w.name}} : <span style="text-align:right" *ngFor="let field of w.fieldOfSpecialization.split(',')"> {{getTranslation(field)}},</span>
+        {{w.name}} :  <span style="text-align:right"*ngFor="let field of w.fieldOfSpecialization.split(',')"> {{getTranslation(field)}},</span>
       </ion-card-header>
         <ion-item>
           <ion-label>

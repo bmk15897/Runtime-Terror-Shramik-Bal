@@ -10,17 +10,20 @@ import { ShramikHttpService } from 'src/app/services/http-services/shramik-http.
 })
 export class Tab2Page {
 
-  isItemAvailable : boolean;
+  isItemAvailable: boolean;
   options: any = [];
   noSearchTriggered = true;
-  searchResultList=[];
-  searchCriteriaOption="";
+  searchResultList: any = [];
+  searchCriteriaOption: any = "";
 
   constructor(public alertController: AlertController,private universalSharedService: UniversalSharedService,private shramikHttpService : ShramikHttpService) {
   this.isItemAvailable = false;
   }
 
   ngOnInit() {
+
+    console.log(this.universalSharedService.userObject);
+
     this.noSearchTriggered=true;
     this.searchResultList=[];
     this.searchCriteriaOption="";
@@ -31,29 +34,15 @@ export class Tab2Page {
       });
     } else {
         let req1 = {
-          field: this.universalSharedService.userObject.labourer.fieldOfSpecialization,
-          city: this.universalSharedService.userObject.labourer.city
+          fieldOfSpecialization: this.universalSharedService.userObject.labourer.fieldOfSpecialization,
+          siteCity: this.universalSharedService.userObject.labourer.city,
+          siteState: this.universalSharedService.userObject.labourer.state,
+          userName : this.universalSharedService.userObject.labourer.username
         }
         console.log(req1);
-        this.shramikHttpService.getCRAccordingToFieldAndCity(req1).subscribe(data => {
+        this.shramikHttpService.getCRForLabourerHome(req1).subscribe(data => {
         console.log(data.object);
         this.applications = data.object;
-        let req2 = {
-        field: this.universalSharedService.userObject.labourer.fieldOfSpecialization,
-        state: this.universalSharedService.userObject.labourer.state
-        }
-        if(this.applications.length<5) {
-          this.shramikHttpService.getCRAccordingToFieldAndState(req2).subscribe(data => {
-            console.log(data.object);
-            this.applications = data.object;
-            if(this.applications.length<5) {
-              this.shramikHttpService.getCRAccordingToField(this.universalSharedService.userObject.labourer.fieldOfSpecialization).subscribe(data => {
-                console.log(data.object);
-                this.applications = data.object;
-            });
-            }
-          });
-        }
       });
     }
   }
@@ -173,6 +162,9 @@ export class Tab2Page {
       }
       case "Applied" : {
         return "आवेदन कर दिया गया है";
+      }
+      case "Sorry, we couldn't find any workers nearby for this search." : {
+        return "क्षमा करें, हमें आपकी आवश्यकता के अनुसार श्रमिक नहीं मिले";
       }
   }
   }

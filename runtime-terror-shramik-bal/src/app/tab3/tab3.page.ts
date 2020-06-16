@@ -126,7 +126,14 @@ public createApplicationForm = new FormGroup({
     const alert = await this.alertController.create({
       cssClass: 'error-popup',
       message: this.getTranslation("Application succesfully created"),
-      buttons: [this.getTranslation("Close")]
+      buttons: [{
+        text: this.getTranslation("Close"),
+        handler: () => {
+          console.log('Confirm Ok');
+          this.createApplicationForm.reset();
+        }
+      }
+      ]
     });
 
     await alert.present();
