@@ -3,7 +3,7 @@
     <ion-header translucent>
       <ion-toolbar class="new-background-color">
         <ion-title>
-          <ion-icon name="notifications" style="padding:3px;"></ion-icon>
+          <ion-icon name="notifications" style="padding:3px;" button (click)="refreshNotifs()"></ion-icon>
           {{getTranslation("Notifications")}}
         </ion-title>
       </ion-toolbar>
@@ -23,10 +23,10 @@
              </ion-card>
              <div *ngIf="todaysNotificationsContractorVisible">
             <ion-card *ngFor="let notification of contractorNewNotifications" (click)="openProfile(notification)">
-              <ion-card-header size="small" expand="block" class="notification-card-header" style="height: 40px;">     
+              <ion-card-header size="small" expand="block" class="notification-card-header" style="height: 40px;"  *ngIf="notification.approved=='P'">
                 <p style="margin-top:-11px;"><ion-icon name="person" style="padding:3px;"></ion-icon><span style="padding:3px; margin-top:-3%">{{notification.labourerName}}</span></p>
                </ion-card-header>  
-              <ion-content style="height:120px">  
+              <ion-content style="height:150px"  *ngIf="notification.approved=='P'">
                 <ion-avatar slot="start">
                     <img src="./avatar-finn.png">
                 </ion-avatar>
@@ -46,7 +46,7 @@
             </ion-list>
             <ion-list>
               <ion-card style="margin-bottom:-3px;"  button (click)="toggleVisibilityForOlderNotifsContractor()">  
-                <ion-card-header size="small" expand="block" class="notification-list-card-header" style="height: 40px; text-align: center;">     
+                <ion-card-header size="small" expand="block" class="notification-list-card-header" style="height: 40px; text-align: center;" >
                   <p style="size:22px; margin-top:-2%;">
                     {{getTranslation("Older Notifications")}}
                     <span *ngIf="!olderNotificationsContractorVisible"> ( {{contractorOldNotifications.length}} ) </span>
@@ -57,10 +57,10 @@
         
             <div *ngIf="olderNotificationsContractorVisible">
                 <ion-card *ngFor="let notification of contractorOldNotifications" (click)="openProfile(notification)">
-                  <ion-card-header size="small" expand="block" class="notification-card-header" style="height: 40px;">     
+                  <ion-card-header size="small" expand="block" class="notification-card-header" style="height: 40px;"  *ngIf="notification.approved=='P'">
                     <p style="margin-top:-11px;"><ion-icon name="person" style="padding-right:3px; margin-bottom:-3px;"></ion-icon><span style="padding:3px; margin-top:-3%"> {{notification.labourerName}} </span></p>
                    </ion-card-header>  
-                  <ion-content style="height:150px">  
+                  <ion-content style="height:150px"  *ngIf="notification.approved=='P'">
                     <ion-avatar slot="start">
                         <img src="./avatar-finn.png">
                     </ion-avatar>

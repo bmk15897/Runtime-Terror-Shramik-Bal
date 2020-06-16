@@ -43,7 +43,7 @@
         <h4 *ngIf="profileDetails.loginDetails.type=='L'">{{profileDetails.labourer.city}}</h4>
     </div>
   </div>
-  <ion-card style="margin-top:-110%;">
+  <ion-card  [style.margin-top]="profileDetails.loginDetails.type=='L' ? '-30%' : '-45%'">
     <ion-card-header size="small" expand="block" class="about-card-header" style="padding:6px;">
       <p style="size: 20px; font-weight: bold; text-decoration: underline;"> {{generateTranslation("About")}} :</p>
     </ion-card-header>
@@ -67,7 +67,7 @@
       <p *ngIf="profileDetails.loginDetails.type=='L' && profileDetails.labourer.personOrGroup=='G'"><span style="color:black; font-weight: bold;" > {{generateTranslation("Group Count")}} :</span> {{profileDetails.labourer.groupCount}}</p> 
       <p *ngIf="profileDetails.loginDetails.type=='L'"> <span style="color:black; font-weight: bold;" > {{generateTranslation("Number of services provided")}} : </span>{{profileDetails.labourer.noOfServicesProvided}}</p> 
 
-      <p *ngIf="profileDetails.loginDetails.type=='C'"> <span style="color:black; font-weight: bold;" > {{generateTranslation("Number of services provided")}} : </span>{{profileDetails.contractor.noOfServicesUsed}}</p> 
+      <p *ngIf="profileDetails.loginDetails.type=='C'"> <span style="color:black; font-weight: bold;" > {{generateTranslation("Number of services availed")}} : </span>{{profileDetails.contractor.noOfServicesUsed}}</p>
 
       <p *ngIf="profileDetails.loginDetails.type=='C'"> <span style="color:black; font-weight: bold;"> {{generateTranslation("On Shramik Bal since ")}} : </span> {{profileDetails.contractor.withUsSince}}</p>
       <p *ngIf="profileDetails.loginDetails.type=='L'"> <span style="color:black; font-weight: bold;"> {{generateTranslation("On Shramik Bal since ")}} : </span> {{profileDetails.labourer.withUsSince}}</p>

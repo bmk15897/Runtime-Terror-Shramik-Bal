@@ -121,4 +121,9 @@ public workerHistory=[];
     }
   }
 
+  refreshNotifs() {
+    this.ngOnInit();
+    console.log('Notifications refreshing..');
+  }
+
 }

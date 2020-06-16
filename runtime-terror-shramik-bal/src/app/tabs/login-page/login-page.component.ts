@@ -80,7 +80,7 @@ export class LoginPageComponent implements OnInit {
     loginDetails.userName=this.loginForm.controls.username.value;
     loginDetails.password=this.loginForm.controls.password.value;
 
-    console.log(this.loginForm.value);
+    //console.log(this.loginForm.value);
 
     this.shramikHttpService.validateUserThroughLogin(loginDetails).subscribe(data => {
       console.log(data);

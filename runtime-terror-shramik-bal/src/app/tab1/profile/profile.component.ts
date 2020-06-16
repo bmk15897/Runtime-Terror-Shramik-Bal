@@ -101,6 +101,9 @@ export class ProfileComponent implements OnInit {
         case "LABOURER" : {
           return "मजदूर";
         }
+        case "Number of services availed" : {
+          return "ऍप के माद्यम से ली गयी सेवाओं की संख्या";
+        }
       }
     }
     return text;

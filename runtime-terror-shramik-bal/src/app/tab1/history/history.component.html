@@ -4,7 +4,7 @@
       <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
     </ion-buttons>
     <ion-title>
-      <ion-icon name="walk"></ion-icon>
+      <ion-icon name="walk" button (click)="refreshNotifs()"></ion-icon>
       {{getTranslation("Activity History")}}
     </ion-title>
   </ion-toolbar>

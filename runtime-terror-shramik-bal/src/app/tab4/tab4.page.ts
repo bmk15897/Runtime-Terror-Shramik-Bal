@@ -40,6 +40,10 @@ export class Tab4Page {
   @ViewChild(NotificationProfileViewComponent) notificationProfileView : NotificationProfileViewComponent
 
   ngOnInit() {
+    this.workerNewNotifications=[];
+    this.contractorNewNotifications=[];
+    this.contractorOldNotifications=[];
+    this.workerOldNotifications=[];
     console.log(this.isUserContractor());
     if(!this.isUserContractor()) {
         this.shramikHttpService.findWorkerApplicationsByLabourer(this.universalSharedService.userObject.loginDetails.userName).subscribe(data => {
@@ -248,6 +252,7 @@ export class Tab4Page {
     this.shramikHttpService.approveWorkerApplication(a).subscribe(data => {
       console.log('Request Approved!');
       this.notificationView=true;
+      this.ngOnInit();
     });
     
   }
@@ -257,6 +262,7 @@ export class Tab4Page {
     this.shramikHttpService.declineWorkerApplication(a).subscribe(data => {
           console.log('Request denied!');
           this.notificationView=true;
+          this.ngOnInit();
     });
   }
   
@@ -297,5 +303,10 @@ export class Tab4Page {
     else {
       this.olderNotifsIcon='chevron-down-outline';
     }
+  }
+
+  refreshNotifs() {
+    this.ngOnInit();
+    console.log('Notifications refreshing..');
   }
 }
