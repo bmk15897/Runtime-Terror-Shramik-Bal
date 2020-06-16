@@ -297,7 +297,7 @@ public class ShramikController {
 		log.info("Post Request Url - /get-CR-for-labourer-home");
 		CustomResponseEntity customResponseEntity = new CustomResponseEntity();
 		customResponseEntity.setMessage("Contractor Requirements fetched");
-		customResponseEntity.setObject(requirementService.findCRForLabourerHome(values.get("siteCity"),values.get("siteState"),values.get("fieldOfSpecialization")));
+		customResponseEntity.setObject(requirementService.findCRForLabourerHome(values.get("siteCity"),values.get("siteState"),values.get("fieldOfSpecialization"),values.get("userName")));
 		return new ResponseEntity<>(customResponseEntity, HttpStatus.OK);
 	}
 	

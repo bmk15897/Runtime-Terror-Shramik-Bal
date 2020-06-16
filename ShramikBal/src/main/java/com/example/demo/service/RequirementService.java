@@ -532,28 +532,39 @@ public class RequirementService implements RequirementServiceInterface{
 	}
 
 	@Override
-	public ArrayList<ContractorRequirementProfile> findCRForLabourerHome(String siteCity, String siteState, String field) {
+	public ArrayList<ContractorRequirementProfile> findCRForLabourerHome(String siteCity, String siteState, String field,String lUserName) {
 		ArrayList<ContractorRequirementProfile> contractorRequirementProfiles = new ArrayList<>();
 		String[] fields = field.split(",");
+		LoginDetails loginDetails = loginDetailsDAO.findByUserName(lUserName);
+		if(loginDetails!=null) {
 		for(String f: fields) {
 			ArrayList<ContractorRequirement> contractorRequirements = contractorRequirementDAO.findCRForLabourerHome(siteCity, siteState, f);
+			Labourer labourer = labourersDAO.findByLoginDetails(loginDetails);
+			ArrayList<Integer> workerApplications = workerApplicationDAO.findContractorRequirementIdsByLabourer(labourer);
+			
+			
 			for(ContractorRequirement contractorRequirement: contractorRequirements) {
-				ContractorRequirementProfile contractorRequirementProfile = new ContractorRequirementProfile();
-				contractorRequirementProfile.setContractorName(contractorRequirement.getContractorOb().getName());
-				contractorRequirementProfile.setContractorRequirementId(contractorRequirement.getContractorRequirementId());
-				contractorRequirementProfile.setField(contractorRequirement.getField());
-				contractorRequirementProfile.setIsActive(contractorRequirement.getIsActive());
-				contractorRequirementProfile.setNoOfPeople(contractorRequirement.getNoOfPeople());
-				contractorRequirementProfile.setNoOfPeopleApplied(contractorRequirement.getNoOfPeopleApplied());
-				contractorRequirementProfile.setSiteAddress(contractorRequirement.getSiteAddress());
-				contractorRequirementProfile.setSiteCity(contractorRequirement.getSiteCity());
-				contractorRequirementProfile.setCreatedDate(contractorRequirement.getCreatedDate());
-				contractorRequirementProfile.setSiteState(contractorRequirement.getSiteState());
-				contractorRequirementProfile.setButtonText("Apply");
-				contractorRequirementProfiles.add(contractorRequirementProfile);
+				if(!workerApplications.contains(contractorRequirement.getContractorRequirementId())) {
+					ContractorRequirementProfile contractorRequirementProfile = new ContractorRequirementProfile();
+					contractorRequirementProfile.setContractorName(contractorRequirement.getContractorOb().getName());
+					contractorRequirementProfile.setContractorRequirementId(contractorRequirement.getContractorRequirementId());
+					contractorRequirementProfile.setField(contractorRequirement.getField());
+					contractorRequirementProfile.setIsActive(contractorRequirement.getIsActive());
+					contractorRequirementProfile.setNoOfPeople(contractorRequirement.getNoOfPeople());
+					contractorRequirementProfile.setNoOfPeopleApplied(contractorRequirement.getNoOfPeopleApplied());
+					contractorRequirementProfile.setSiteAddress(contractorRequirement.getSiteAddress());
+					contractorRequirementProfile.setSiteCity(contractorRequirement.getSiteCity());
+					contractorRequirementProfile.setCreatedDate(contractorRequirement.getCreatedDate());
+					contractorRequirementProfile.setSiteState(contractorRequirement.getSiteState());
+					contractorRequirementProfile.setButtonText("Apply");
+					contractorRequirementProfiles.add(contractorRequirementProfile);
+				}
 			}
 		}
 		return contractorRequirementProfiles;
+		}else {
+			return null;
+		}
 	}
 
 }

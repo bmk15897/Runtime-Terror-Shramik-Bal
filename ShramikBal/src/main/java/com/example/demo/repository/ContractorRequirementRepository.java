@@ -19,10 +19,10 @@ public interface ContractorRequirementRepository  extends JpaRepository<Contract
 	ArrayList<ContractorRequirement> findByContractorObAndIsActive(Contractor contractor,String isActive);
 	ArrayList<ContractorRequirement> findByFieldAndSiteState(String field,String state);
 	
-	@Query(value = "select count(u) from ContractorRequirement u where u.siteCity=?1")
+	@Query(value = "select count(u) from ContractorRequirement u where u.siteCity=?1 and u.isActive='Y'")
 	Long selectCountSiteCity(String siteCity);
 
-	@Query(value = "select count(u) from ContractorRequirement u where u.siteState=?1")
+	@Query(value = "select count(u) from ContractorRequirement u where u.siteState=?1 and u.isActive='Y'")
 	Long selectCountSiteState(String siteState);
 	
 	

@@ -41,5 +41,5 @@ public interface RequirementServiceInterface {
 	ArrayList<ContractorRequirement> findActiveCRByContractor(String contractorId);
 	ArrayList<ContractorRequirement> findInActiveCRByContractor(String contractorId);
 	ArrayList<ContractorRequirementProfile> findCRByFieldAndSiteState (String field,String state);
-	ArrayList<ContractorRequirementProfile> findCRForLabourerHome(String steCity,String siteState, String field);
+	ArrayList<ContractorRequirementProfile> findCRForLabourerHome(String steCity,String siteState, String field,String lUserName);
 }

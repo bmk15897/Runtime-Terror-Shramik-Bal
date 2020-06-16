@@ -11,4 +11,5 @@ public interface WorkerApplicationDAOInterface {
 	WorkerApplication findWorkerApplication(int workAppID);
 	ArrayList<WorkerApplication> findByLabourer(Labourer labourer);
 	ArrayList<WorkerApplication> findByContractorRequirementId(ContractorRequirement contractorRequirement);
+	ArrayList<Integer> findContractorRequirementIdsByLabourer(Labourer labourer);
 }
