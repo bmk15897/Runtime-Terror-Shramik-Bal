@@ -199,9 +199,9 @@
         <ion-card-header size="small" expand="block" class="about-card-header">
           <p style="size: 20px; font-weight: bold; text-decoration: underline;"> {{getTranslation("About")}} :</p>
         </ion-card-header>
-        <ion-content style="height:300px; padding:left: 10px;">  
-        <p style="margin-top:7px;"> <span style="color:black; font-weight: bold;" > {{getTranslation("Field of Specialization")}} :</span> {{getTranslation(profileDetails.fieldOfSpecialization)}}</p>
-          <p> <span style="color:black; font-weight: bold;">  {{getTranslation("Rating")}} :</span>  {{profileDetails.avgRating}} <ion-icon name="star"></ion-icon> </p> 
+        <ion-content style="height:300px; padding:left: 10px;">
+          <p style="padding-top:7px;"> <span style="color:black; font-weight: bold; padding-top:20px;" > {{getTranslation("Field of Specialization")}} :</span> <span *ngFor="let field of profileDetails.fieldOfSpecialization.split(',')"> {{getTranslation(field)}} <span *ngIf="profileDetails.fieldOfSpecialization.split(',').indexOf(field)<profileDetails.fieldOfSpecialization.split(',').length-1">,</span> </span> </p>
+          <p> <span style="color:black; font-weight: bold;">  {{getTranslation("Rating")}} :</span>  {{profileDetails.avgRating}} <ion-icon name="star"></ion-icon> </p>
           <p><span style="color:black; font-weight: bold;">  {{profileDetails.age}}</span> {{getTranslation("years old")}}</p> 
           <p><span style="color:black; font-weight: bold;"> {{getTranslation("Contact Number")}} : </span>{{profileDetails.contactNo}}</p> 
           <p *ngIf="profileDetails.personOrGroup=='G'"><span style="color:black; font-weight: bold;" > {{getTranslation("Group Count")}} :</span> {{profileDetails.groupCount}}</p> 

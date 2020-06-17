@@ -49,7 +49,7 @@
     </ion-card-header>
 
     <ion-content style="height:{{contentheight}}; padding:left: 10px;">  
-    <p *ngIf="profileDetails.loginDetails.type=='L'" style="padding-top:7px;"> <span style="color:black; font-weight: bold; padding-top:20px;" > {{generateTranslation("Field of Specialization")}} :</span> <span *ngFor="let field of profileDetails.labourer.fieldOfSpecialization.split(',')"> {{generateTranslation(field)}}, </span> </p>
+      <p *ngIf="profileDetails.loginDetails.type=='L'" style="padding-top:7px;"> <span style="color:black; font-weight: bold; padding-top:20px;" > {{generateTranslation("Field of Specialization")}} :</span> <span *ngFor="let field of profileDetails.labourer.fieldOfSpecialization.split(',')"> {{generateTranslation(field)}}<span *ngIf="profileDetails.labourer.fieldOfSpecialization.split(',').indexOf(field)<profileDetails.labourer.fieldOfSpecialization.split(',').length-1">,</span> </span> </p>
 
       <p *ngIf="profileDetails.loginDetails.type=='C'"> <span style="color:black; font-weight: bold;">  {{generateTranslation("Rating")}} :</span> {{profileDetails.contractor.avgRating}} <ion-icon name="star"></ion-icon></p> 
 
