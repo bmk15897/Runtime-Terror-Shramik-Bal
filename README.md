@@ -30,6 +30,10 @@ As a solution, we propose Shramik Bal – A mobile application which will work a
 
 [![Watch the video](https://github.com/bmk15897/Runtime-Terror-Shramik-Bal/blob/master/f53d86b3-4841-4087-b084-87718360387e_200x200.png)](https://drive.google.com/file/d/1wi2dgUrjuCnEtJ0Rz-RRRnFaaYZJLQGL/view?usp=sharing)
 
+#### Shramik Feedback video
+
+Click [Shramik Feedback](https://drive.google.com/file/d/1jm602ZPBxzGHHotdjWYE5ACtcVcN-xtP/view) to watch the Shramik feedback.
+
 ## The architecture
 
 ![Shramik Bal Application](https://github.com/bmk15897/Runtime-Terror-Shramik-Bal/blob/master/Runtime%20Terror_Shramik%20Bal_Architecture.JPG)
